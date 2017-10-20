@@ -17,4 +17,12 @@ class AdminController extends Controller
     {
         return new Response('Admin page');
     }
+
+
+    /**
+     * @Route("/logout")
+     */
+    public function logoutAction() : Response{
+        return new Response("Hello");
+    }
 }

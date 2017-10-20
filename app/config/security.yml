@@ -4,17 +4,13 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    ryan:
-                        password: $2b$10$nMAB6CMIM4tLZUsFbQsRb.UJyQhweO8b0dITR9VQiJwAdSUwEP0L6
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: $2b$10$V/TFVZ3./UY7IJu6bOheae9P.BSh6sUdjwCSktbJks/UkAPiQ1JCu
-                        roles: 'ROLE_ADMIN'
+        our_db_provider:
+            entity:
+                class: AppBundle:User
+                property: username
     encoders:
-        Symfony\Component\Security\Core\User\User: bcrypt
+        AppBundle\Entity\User:
+            algorithm: bcrypt
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,13 +19,11 @@ security:
             security: false
 
         main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+            pattern:    ^/
             http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            provider: our_db_provider
+            logout:
+              path: /logout
+              target: /
     access_control:
       - { path: ^/admin, roles: ROLE_ADMIN }
