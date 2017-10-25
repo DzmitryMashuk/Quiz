@@ -1,5 +1,5 @@
 <?php
-// src/AppBundle/Controller/RegistrationController.php
+
 namespace AppBundle\Controller;
 
 use AppBundle\Form\UserType;
