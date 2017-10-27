@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Дмитрий
- * Date: 23.10.2017
- * Time: 21:22
- */
 
 namespace AppBundle\Controller\Security;
 
@@ -21,7 +15,6 @@ class SecurityController extends Controller
     public function loginAction(Request $request, AuthenticationUtils $authUtils){
         $error = $authUtils->getLastAuthenticationError();
 
-        // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
         return $this->render('security/security.html.twig', array(

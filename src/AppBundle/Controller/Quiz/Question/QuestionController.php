@@ -1,9 +1,10 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Quiz\Question;
 
 use AppBundle\Form\QuestionType;
 use AppBundle\Entity\Question;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,6 @@ class QuestionController extends Controller
      */
     public function registerAction(Request $request)
     {
-
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
 

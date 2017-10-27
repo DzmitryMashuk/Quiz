@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -32,11 +31,9 @@ class Question
      */
     private $status = false;
 
-
     public function __construct()
     {
     }
-
 
     public function getQuestion()
     {
