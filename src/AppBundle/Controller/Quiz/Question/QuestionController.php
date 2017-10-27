@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Quiz\Question;
 
 use AppBundle\Form\QuestionType;
 use AppBundle\Entity\Question;
