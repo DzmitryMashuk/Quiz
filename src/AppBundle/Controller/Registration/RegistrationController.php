@@ -14,7 +14,7 @@ class RegistrationController extends Controller
     /**
     * @Route("/register", name="registration")
     */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
@@ -29,7 +29,20 @@ class RegistrationController extends Controller
         $em->persist($user);
         $em->flush();
 
-        return $this->redirectToRoute("mainMenu");
+        $message = (new \Swift_Message('QUIZ'))
+            ->setFrom('DzmitryMashuk@gmail.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->renderView(
+                    'registration/email.html.twig'
+                ),
+                'text/html'
+            )
+        ;
+
+        $mailer->send($message);
+
+        return $this->redirectToRoute("login");
         }
 
         return $this->render(
