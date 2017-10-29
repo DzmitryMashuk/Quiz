@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {{ include('header.html.twig') }}
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/mainmenu.css') }}" />
+    <div id="grad">
+        <form>
+            <input list="Quizzes" class="quizzes">
+            <datalist id="Quizzes">
+                <option value="Quiz1">
+                <option value="Quiz2">
+                <option value="NewQuiz">
+            </datalist>
+        </form>
+        <a href="#" class="button">Start</a>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
+</body>
+</html>
