@@ -20,11 +20,12 @@ security:
             anonymous: ~
 
             form_login:
-              login_path: login
-              check_path: login
+                default_target_path: mainMenu
+                login_path: login
+                check_path: login
 
             logout:
-              path: /logout
-              target: /
+                path: /logout
+                target: /login
     access_control:
       - { path: ^/admin, roles: ROLE_ADMIN }

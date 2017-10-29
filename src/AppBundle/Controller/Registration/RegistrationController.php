@@ -23,7 +23,7 @@ class RegistrationController extends Controller
             $em->persist($user);
             $em->flush();
             $message = (new \Swift_Message('QUIZ'))
-                ->setFrom('DzmitryMashuk@gmail.com')
+                ->setFrom('Dashoid.chern@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody(
                     $this->renderView(

@@ -9,11 +9,11 @@ use Symfony\Component\HttpFoundation\Request;
 class MainMenuController extends Controller
 {
     /**
-     * @Route("/mainmenu", name="mainmenu")
+     * @Route("/mainMenu", name="mainMenu")
      */
     public function menuAction(Request $request)
     {
-        return $this->render('mainmenu/mainmenu.html.twig', [
+        return $this->render('mainMenu/mainMenu.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }

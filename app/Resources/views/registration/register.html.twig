@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
-<html>
-    <form  class="form-3" action="{{ form_start(form) }}">
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.plainPassword.first) }}
-        {{ form_row(form.plainPassword.second) }}
-        <p class="clearfix">
-            <input type="submit" name="submit" value="Sign in">
-        </p>
-        {{ form_end(form) }}
-    </form>
-</html>
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first) }}
+    {{ form_row(form.plainPassword.second) }}
+    <button type="submit">Sign up</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -48,13 +48,18 @@ class User implements UserInterface, \Serializable
     private $email;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="active", type="boolean")
      */
-    private $isActive;
+    private $Active;
+
+    /**
+     * @ORM\Column(name="roles", type="json_array")
+     */
+    private $roles = array();
 
     public function __construct()
     {
-        $this->isActive = true;
+        $this->Active = true;
     }
 
     public function getEmail()
@@ -102,9 +107,14 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return $this->roles;
     }
 
     public function eraseCredentials()
