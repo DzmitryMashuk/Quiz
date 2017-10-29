@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Registration;
+namespace AppBundle\Controller;
 
 use AppBundle\Form\RegistrationType;
 use AppBundle\Entity\User;
@@ -11,43 +11,37 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-    /**
-    * @Route("/register", name="registration")
-    */
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer)
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
+/**
+* @Route("/register", name="user_registration")
+*/
+public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+{
+// 1) build the form
+$user = new User();
+$form = $this->createForm(RegistrationType::class, $user);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+// 2) handle the submit (will only happen on POST)
+$form->handleRequest($request);
+if ($form->isSubmitted() && $form->isValid()) {
 
-        $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-        $user->setPassword($password);
+// 3) Encode the password (you could also do this via Doctrine listener)
+$password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+$user->setPassword($password);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+// 4) save the User!
+$em = $this->getDoctrine()->getManager();
+$em->persist($user);
+$em->flush();
 
-        $message = (new \Swift_Message('QUIZ'))
-            ->setFrom('DzmitryMashuk@gmail.com')
-            ->setTo($user->getEmail())
-            ->setBody(
-                $this->renderView(
-                    'registration/email.html.twig'
-                ),
-                'text/html'
-            )
-        ;
+// ... do any other work - like sending them an email, etc
+// maybe set a "flash" success message for the user
 
-        $mailer->send($message);
+return $this->redirectToRoute("mainMenu");
+}
 
-        return $this->redirectToRoute("login");
-        }
-
-        return $this->render(
-        'registration/register.html.twig',
-        array('form' => $form->createView())
-        );
-    }
+return $this->render(
+'registration/register.html.twig',
+array('form' => $form->createView())
+);
+}
 }

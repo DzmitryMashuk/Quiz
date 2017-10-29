@@ -1,0 +1,20 @@
+.footer {
+    display: block;
+    height: 150px;
+    font-size: 20px;
+    background-color: #333;
+    color: grey;
+}
+
+.footer p{
+    text-align: center;
+    margin: 0;
+}
+
+.footer ul {
+    font-size: 19px;
+}
+
+.column {
+    column-count: 2;
+}

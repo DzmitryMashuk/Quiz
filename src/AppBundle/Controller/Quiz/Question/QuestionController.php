@@ -14,7 +14,7 @@ class QuestionController extends Controller
     /**
      * @Route("/question", name="question")
      */
-    public function registerAction(Request $request)
+    public function questionAction(Request $request)
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
