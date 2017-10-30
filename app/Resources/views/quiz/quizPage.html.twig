@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {{ include('header.html.twig') }}
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/QuizPage.css') }}" />
+    <div id="grad">
+        <img src="{{ asset('bundles/science.png') }}" class="image1"/>
+        <form class="answers">
+            <input type="text" class="question" value="Question1" readonly>
+            <div class="answers1">
+                <p>
+                    <input type="radio" class="radio" id="radio" name="radio">
+                    <label for="radio">Answer1</label>
+                </p>
+                <p>
+                    <input type="radio" class="radio" id="radio" name="radio">
+                    <label for="radio">Answer2</label>
+                    </p>
+                <p>
+                    <input type="radio" class="radio" id="radio" name="radio">
+                    <label for="radio">Answer3</label>
+                </p>
+                <p>
+                    <input type="radio" class="radio" id="radio" name="radio">
+                    <label for="radio">Answer4</label>
+                </p>
+            </div>
+        </form>
+        <a href="#" class="confirm">Confirm</a>
+        <a href="#" class="next">Next</a>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
+</body>
+</html>

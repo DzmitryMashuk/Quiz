@@ -1,0 +1,106 @@
+body {
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    margin: 0;
+}
+
+.radio {
+    width:2em;
+    height:2em;
+    vertical-align: middle;
+}
+
+label {
+    vertical-align: middle;
+}
+
+.image1 {
+    position: absolute;
+    top: 20%;
+    left: 7%;
+    width: 350px;
+}
+
+.confirm,
+.next {
+    position: absolute;
+    text-decoration:none;
+    text-align:center;
+    padding:10px 50px;
+    border:groove 2px #010a01;
+    -webkit-border-radius:38px;
+    -moz-border-radius:38px;
+    border-radius: 38px;
+    font:33px Verdana, Geneva, sans-serif;
+    font-weight:bold;
+    color:#ebf5f5;
+    background-color:#031a13;
+    -webkit-box-shadow:8px 12px 20px #144507, inset 0px 2px 4px #ffffff;
+    -moz-box-shadow: 8px 12px 20px #144507,  inset 0px 2px 4px #ffffff;
+    box-shadow:8px 12px 20px #144507, inset 0px 2px 4px #ffffff;
+    text-shadow: 4px 4px 7px #02170b;
+    filter: dropshadow(color=#02170b, offx=4, offy=4);
+}
+
+.confirm {
+    top: 80%;
+    left: 60%;
+}
+
+.next {
+    top: 80%;
+    left: 80%;
+}
+
+.confirm:hover,
+.next:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.confirm:active,
+.next:active
+{
+    background: #629755;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    border-color: #000; /* Fallback */
+    border-color: rgba(0,0,0,0.9);
+}
+
+.no-boxshadow .confirm:hover,
+.no-boxshadow .next:hover{
+    background: #629755;
+}
+
+.question {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 550px;
+    height: 150px;
+    border-radius: 38px;
+    text-align: start;
+    font:30px Ubuntu, Lato, sans-serif;
+}
+
+.answers {
+    font:20px Verdana, Geneva, sans-serif;
+}
+
+.answers1 {
+    position: absolute;
+    left: 30%;
+    top: 45%;
+}
+
+.question:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+#grad {
+    height: 600px;
+    background: #00bc08;
+    background: -webkit-linear-gradient(#00bc08, #cdf93e);
+    background: -o-linear-gradient(#00bc08, #cdf93e);
+    background: -moz-linear-gradient(#00bc08, #cdf93e);
+    background: linear-gradient(#00bc08, #cdf93e);
+}
