@@ -22,7 +22,8 @@ body {
     -moz-box-shadow: 8px 12px 20px #144507,  inset 0px 2px 4px #ffffff;
     box-shadow:8px 12px 20px #144507, inset 0px 2px 4px #ffffff;
     text-shadow: 4px 4px 7px #02170b;
-    filter: dropshadow(color=#02170b, offx=4, offy=4); }
+    filter: dropshadow(color=#02170b, offx=4, offy=4);
+}
 
 .button:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
