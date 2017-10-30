@@ -6,7 +6,7 @@ body {
     background: linear-gradient(#FFFFFF, #cdf93e);
 }
 
-.form-3 {
+form {
     font-family: 'Ubuntu', 'Lato', sans-serif;
     font-weight: 400;
     /* Size and position */
@@ -24,7 +24,8 @@ body {
             inset 0 0 2px 1px rgba(255,255,255,0.08),
             0 16px 10px -8px rgba(0, 0, 0, 0.6);
 }
-.form-3 label {
+
+form label {
     /* Size and position */
     width: 50%;
     float: left;
@@ -41,8 +42,9 @@ body {
     cursor: pointer;
 }
 
-.form-3 input[type=text],
-.form-3 input[type=password] {
+form input[type=text],
+form input[type=email],
+form input[type=password] {
     /* Size and position */
     width: 50%;
     float: left;
@@ -62,26 +64,30 @@ body {
     color: #fff;
 }
 
-.form-3 input[type=text]:hover,
-.form-3 input[type=password]:hover,
-.form-3 label:hover ~ input[type=text],
-.form-3 label:hover ~ input[type=password] {
+form input[type=text]:hover,
+form input[type=email]:hover,
+form input[type=password]:hover,
+form label:hover ~ input[type=email],
+form label:hover ~ input[type=text],
+form label:hover ~ input[type=password] {
     background: #27292c;
 }
 
-.form-3 input[type=text]:focus,
-.form-3 input[type=password]:focus {
+form input[type=text]:focus,
+form input[type=email]:focus,
+form input[type=password]:focus {
     box-shadow: inset 0 0 2px #000;
     background: #494d54;
     border-color: #629755;
     outline: none; /* Remove Chrome outline */
 }
-.form-3 p:nth-child(3),
-.form-3 p:nth-child(4) {
+
+form p:nth-child(3),
+form p:nth-child(4) {
     float: left;
     width: 50%;
 }
-.form-3 label[for=remember] {
+form label[for=remember] {
     width: auto;
     float: none;
     display: inline-block;
@@ -92,11 +98,7 @@ body {
     text-indent: 2px;
 }
 
-.form-3 input[type=checkbox] {
-    margin-left: 10px;
-    vertical-align: middle;
-}
-.form-3 input[type=submit] {
+form input[type=submit] {
     /* Width and position */
     width: 100%;
     padding: 8px 5px;
@@ -119,22 +121,22 @@ body {
     text-shadow: 0 -1px 0 rgba(0,0,0,0.8);
 }
 
-.form-3 input[type=submit]:hover {
+form input[type=submit]:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-.form-3 input[type=submit]:active {
+form input[type=submit]:active {
     background: #629755;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
     border-color: #000; /* Fallback */
     border-color: rgba(0,0,0,0.9);
 }
 
-.no-boxshadow .form-3 input[type=submit]:hover {
+.no-boxshadow form input[type=submit]:hover {
     background: #629755;
 }
 /* Gradient line */
-.form-3:after {
+form:after {
     /* Size and position */
     content: "";
     height: 1px;
@@ -148,7 +150,7 @@ body {
 }
 
 /* Small flash */
-.form-3:before {
+form:before {
     /* Size and position */
     content: "";
     width: 8px;
@@ -161,7 +163,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 6px 4px #fff;
 }
-.form-3 p:nth-child(1):before{
+form p:nth-child(1):before{
     /* Size and position */
     content: "";
     width: 250px;
@@ -175,6 +177,6 @@ body {
     background: linear-gradient(50deg, rgba(255,255,255,0.15), rgba(0,0,0,0));
     pointer-events: none;
 }
-.no-pointerevents .form-3 p:nth-child(1):before {
+.no-pointerevents form p:nth-child(1):before {
     display: none;
 }

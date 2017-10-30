@@ -3,13 +3,29 @@ body {
     margin: 0;
 }
 
-.button{
+.radio {
+    width:2em;
+    height:2em;
+    vertical-align: middle;
+}
+
+label {
+    vertical-align: middle;
+}
+
+.image1 {
     position: absolute;
-    top: 65%;
-    left: 40%;
+    top: 20%;
+    left: 7%;
+    width: 350px;
+}
+
+.confirm,
+.next {
+    position: absolute;
     text-decoration:none;
     text-align:center;
-    padding:14px 82px;
+    padding:10px 50px;
     border:groove 2px #010a01;
     -webkit-border-radius:38px;
     -moz-border-radius:38px;
@@ -25,33 +41,57 @@ body {
     filter: dropshadow(color=#02170b, offx=4, offy=4);
 }
 
-.button:hover {
+.confirm {
+    top: 80%;
+    left: 60%;
+}
+
+.next {
+    top: 80%;
+    left: 80%;
+}
+
+.confirm:hover,
+.next:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-.button:active {
+.confirm:active,
+.next:active
+{
     background: #629755;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
     border-color: #000; /* Fallback */
     border-color: rgba(0,0,0,0.9);
 }
 
-.no-boxshadow .button:hover {
+.no-boxshadow .confirm:hover,
+.no-boxshadow .next:hover{
     background: #629755;
 }
 
-.quizzes {
+.question {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 30%;
     width: 550px;
-    height: 70px;
+    height: 150px;
     border-radius: 38px;
-    text-align:left;
+    text-align: start;
     font:30px Ubuntu, Lato, sans-serif;
 }
 
-.quizzes:active, :hover, :focus {
+.answers {
+    font:20px Verdana, Geneva, sans-serif;
+}
+
+.answers1 {
+    position: absolute;
+    left: 30%;
+    top: 45%;
+}
+
+.question:active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
 }
