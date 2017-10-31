@@ -5,12 +5,12 @@ namespace AppBundle\Entity\Quiz;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Answer
+ * QuizQuestion
  *
- * @ORM\Table(name="app_answer")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AnswerRepository")
+ * @ORM\Table(name="app_quiz_question")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Quiz_QuestionRepository")
  */
-class Answer
+class QuizQuestion
 {
     /**
      * @var int
@@ -22,18 +22,11 @@ class Answer
     private $id;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="id_quiz", type="integer")
      */
-    private $name;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="correct", type="boolean")
-     */
-    private $correct;
+    private $idQuiz;
 
     /**
      * @var int
@@ -54,43 +47,23 @@ class Answer
     }
 
     /**
-     * Set name
+     * Set idQuiz
      *
-     * @param string $name
+     * @param integer $idQuiz
      */
-    public function setName($name)
+    public function setIdQuiz($idQuiz)
     {
-        $this->name = $name;
+        $this->idQuiz = $idQuiz;
     }
 
     /**
-     * Get name
+     * Get idQuiz
      *
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getIdQuiz()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set correct
-     *
-     * @param boolean $correct
-     */
-    public function setCorrect($correct)
-    {
-        $this->correct = $correct;
-    }
-
-    /**
-     * Get correct
-     *
-     * @return bool
-     */
-    public function getCorrect()
-    {
-        return $this->correct;
+        return $this->idQuiz;
     }
 
     /**

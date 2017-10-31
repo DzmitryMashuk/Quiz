@@ -78,14 +78,10 @@ class Quiz
      * Set name
      *
      * @param string $name
-     *
-     * @return Quiz
      */
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -102,14 +98,10 @@ class Quiz
      * Set status
      *
      * @param boolean $status
-     *
-     * @return Quiz
      */
     public function setStatus($status)
     {
         $this->status = $status;
-
-        return $this;
     }
 
     /**
@@ -126,14 +118,10 @@ class Quiz
      * Set leaderFirst
      *
      * @param string $leaderFirst
-     *
-     * @return Quiz
      */
     public function setLeaderFirst($leaderFirst)
     {
         $this->leaderFirst = $leaderFirst;
-
-        return $this;
     }
 
     /**
@@ -150,14 +138,10 @@ class Quiz
      * Set leaderSecond
      *
      * @param string $leaderSecond
-     *
-     * @return Quiz
      */
     public function setLeaderSecond($leaderSecond)
     {
         $this->leaderSecond = $leaderSecond;
-
-        return $this;
     }
 
     /**
@@ -174,14 +158,10 @@ class Quiz
      * Set leaderThird
      *
      * @param string $leaderThird
-     *
-     * @return Quiz
      */
     public function setLeaderThird($leaderThird)
     {
         $this->leaderThird = $leaderThird;
-
-        return $this;
     }
 
     /**
@@ -198,14 +178,11 @@ class Quiz
      * Set block
      *
      * @param boolean $block
-     *
-     * @return Quiz
      */
     public function setBlock($block)
     {
         $this->block = $block;
 
-        return $this;
     }
 
     /**
