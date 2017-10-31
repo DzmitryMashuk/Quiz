@@ -6,6 +6,7 @@ use AppBundle\Entity\User;
 use AppBundle\Form\PasswordRecoveryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 
 class PasswordRecoveryController extends Controller
@@ -15,6 +16,9 @@ class PasswordRecoveryController extends Controller
      */
     public function passwordRecoveryAction(Request $request, \Swift_Mailer $mailer)
     {
+        $product = $this->getDoctrine()
+            ->getRepository(EmailType::class)
+            ->find($productId);
         $user = new User();
         $form = $this->createForm(PasswordRecoveryType::class, $user);
         $form->handleRequest($request);
