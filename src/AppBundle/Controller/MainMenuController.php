@@ -16,6 +16,8 @@ class MainMenuController extends Controller
         return $this->render('mainMenu/mainMenu.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
+
+
     }
 
 }
