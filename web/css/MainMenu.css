@@ -3,6 +3,22 @@ body {
     margin: 0;
 }
 
+.quizzes {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 550px;
+    height: 70px;
+    border-radius: 38px;
+    text-align:left;
+    font:30px Ubuntu, Lato, sans-serif;
+}
+
+.quizzes:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
 .button{
     position: absolute;
     top: 65%;
@@ -38,22 +54,6 @@ body {
 
 .no-boxshadow .button:hover {
     background: #629755;
-}
-
-.quizzes {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    width: 550px;
-    height: 70px;
-    border-radius: 38px;
-    text-align:left;
-    font:30px Ubuntu, Lato, sans-serif;
-}
-
-.quizzes:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
 }
 
 #grad {
