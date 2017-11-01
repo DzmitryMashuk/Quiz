@@ -13,7 +13,7 @@
             <input type="password" id="password" name="_password" placeholder="Password"/>
         </p>
         <p class="clearfix">
-            <a href="http://localhost/quiz/web/app_dev.php/passwordRecovery">
+            <a href="{{ url('passwordRecovery') }}">
             <input type="button" class="button" name="button" value="Forgot password?">
             </a>
         </p>
@@ -21,7 +21,7 @@
             <input type="submit" name="submit" value="Sign in">
         </p>
         <p class="clearfix">
-            <a href="http://localhost/quiz/web/app_dev.php/register">
+            <a href="{{ url('registration') }}">
                 <input type="button" class="register" name="register" value="Sign up">
             </a>
         </p>
