@@ -19,10 +19,36 @@ body {
     outline-offset: 0;
 }
 
-.button{
+#start {
     position: absolute;
     top: 65%;
     left: 40%;
+}
+
+#add {
+    top: 51%;
+    left: 20%;
+}
+
+#edit {
+    top: 51%;
+    left: 72%;
+}
+
+#delete {
+    top: 51%;
+    left: 80%;
+}
+
+#delete,
+#edit,
+#add {
+    padding:14px 30px;
+    font:20px Verdana, Geneva, sans-serif;
+}
+
+.button {
+    position: absolute;
     text-decoration:none;
     text-align:center;
     padding:14px 82px;
@@ -64,7 +90,6 @@ body {
     background: -moz-linear-gradient(#00bc08, #cdf93e);
     background: linear-gradient(#00bc08, #cdf93e);
 }
-
 
 .www {
     position: absolute;

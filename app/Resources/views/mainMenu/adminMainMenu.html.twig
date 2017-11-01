@@ -9,17 +9,21 @@
     {{ include('header.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/mainmenu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/adminMainMenu.css') }}" />
     <div id="grad">
+        <p class="www">Welcome, user!</p>
         <form>
-            <input list="Quizzes" class="quizzes">
+            <input list="Quizzes" class="quizzes" placeholder="Please, select a quiz">
             <datalist id="Quizzes">
                 <option value="Quiz1">
                 <option value="Quiz2">
                 <option value="NewQuiz">
             </datalist>
         </form>
-        <a href="#" class="button">Start</a>
+        <a href="http://localhost/quiz/web/app_dev.php/quizPage" id="start" class="button">Start</a>
+        <a href="http://localhost/quiz/web/app_dev.php/adminQuiz" id="add" class="button">Add</a>
+        <a id="edit" class="button">Edit</a>
+        <a id="delete" class="button">Delete</a>
     </div>
 {% endblock %}
 {% block footer %}

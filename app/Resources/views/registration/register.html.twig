@@ -1,14 +1,14 @@
 <body>
     <link rel="stylesheet" href="{{ asset('css/registration.css') }}" />
-    {{ form_start(form) }}
-    <p class="clearfix">
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.plainPassword.first) }}
-        {{ form_row(form.plainPassword.second) }}
-        <input type="submit" name="submit" value="Sign up">
-    </p>
     {% block body %}
+        {{ form_start(form) }}
+        <p class="clearfix">
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.plainPassword.first) }}
+            {{ form_row(form.plainPassword.second) }}
+            <input type="submit" name="submit" value="Sign up">
+        </p>
         {{ form_end(form) }}
     {% endblock %}
 </body>

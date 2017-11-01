@@ -1,20 +1,21 @@
 <?php
 
-namespace AppBundle\Controller\Quiz;
+namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class QuizPageController extends Controller
+class AdminMainMenuController extends Controller
 {
     /**
-     * @Route("/userQuizPage", name="userQuizPage")
+     * @Route("/adminMainMenu", name="adminMainMenu")
      */
     public function menuAction(Request $request)
     {
-        return $this->render('quiz/userQuizPage.html.twig', [
+        return $this->render('mainMenu/adminMainMenu.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
         ]);
     }
+
 }
