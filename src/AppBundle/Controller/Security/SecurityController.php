@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\Security;
 
-use AppBundle\Entity\Question;
+use AppBundle\Entity\Quiz\Question;
 use AppBundle\Form\QuestionType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
