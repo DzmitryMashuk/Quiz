@@ -61,7 +61,7 @@ class SecurityController extends Controller
         $form->handleRequest($request);
 
         return $this->render(
-            'mainMenu/mainMenu.html.twig',
+            'mainMenu/userMainMenu.html.twig',
             array('form' => $form->createView())
         );
     }
