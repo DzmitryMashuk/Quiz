@@ -3,8 +3,7 @@
 namespace AppBundle\Controller\Quiz\Question;
 
 use AppBundle\Form\QuestionType;
-use AppBundle\Entity\Question;
-
+use AppBundle\Entity\Quiz\Question;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +20,7 @@ class QuestionController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $question->setIdNextQuestion(1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
