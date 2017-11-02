@@ -1,7 +1,11 @@
 <?php
+
 namespace AppBundle\Controller\Registration;
+
 use AppBundle\Form\RegistrationType;
 use AppBundle\Entity\User;
+use AppBundle\Service\EmailManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,22 +28,22 @@ class RegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $message = (new \Swift_Message('QUIZ'))
-                ->setFrom('Dashoid.chern@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'registration/email.html.twig'
-                    ),
-                    'text/html'
-                )
-            ;
-            $mailer->send($message);
+            EmailManager::sendMail($mailer, $user->getEmail(), $this->renderView('registration/email.html.twig', array( 'userName'=>$user->getUsername() )));
+
             return $this->redirectToRoute("login");
         }
+
         return $this->render(
             'registration/register.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    /**
+     * @Route("/email", name="email")
+     */
+    public function emailAction(Request $request)
+    {
+        return $this->redirectToRoute('userMainMenu');
     }
 }
