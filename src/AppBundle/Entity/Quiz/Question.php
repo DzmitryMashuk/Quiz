@@ -32,12 +32,22 @@ class Question
     private $status = false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $idNextQuestion;
+    private $finishQuestion;
 
     public function __construct()
     {
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -73,18 +83,18 @@ class Question
     }
 
     /**
-     * @param int $idNextQuestion
+     * @param boolean $finishQuestion
      */
-    public function setIdNextQuestion(int $idNextQuestion)
+    public function setFinishQuestion(boolean $finishQuestion)
     {
-        $this->idNextQuestion = $idNextQuestion;
+        $this->finishQuestion = $finishQuestion;
     }
 
     /**
-     * @return int
+     * @return boolean
      */
-    public function getIdNextQuestion()
+    public function getFinishQuestion()
     {
-        return $this->idNextQuestion;
+        return $this->finishQuestion;
     }
 }
