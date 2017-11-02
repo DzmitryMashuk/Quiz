@@ -15,14 +15,17 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('adminUserShow_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a href="{{ path('adminUserList_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.email }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('adminUserShow_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('adminUserList_show', { 'id': user.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('adminUserList_edit', { 'id': user.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -31,5 +34,9 @@
         </tbody>
     </table>
 
-    
+    <ul>
+        <li>
+            <a href="{{ path('adminUserList_new') }}">Create a new user</a>
+        </li>
+    </ul>
 {% endblock %}
