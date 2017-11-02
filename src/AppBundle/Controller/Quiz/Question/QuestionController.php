@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class QuestionController extends Controller
 {
     /**
-     * @Route("/question", name="question")
+     * @Route("/adminAddQuestion", name="adminAddQuestion")
      */
     public function questionAction(Request $request)
     {
@@ -29,7 +29,7 @@ class QuestionController extends Controller
         }
 
         return $this->render(
-            'question/question.html.twig',
+            'admin/adminAddQuestion.html.twig',
             array('form' => $form->createView())
         );
     }
