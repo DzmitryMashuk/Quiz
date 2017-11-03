@@ -15,8 +15,6 @@ form {
     margin: 60px auto 30px;
     padding: 10px;
     overflow: hidden;
-
-    /* Styles */
     background: #111;
     border-radius: 0.4em;
     border: 1px solid #191919;
@@ -26,12 +24,9 @@ form {
 }
 
 form label {
-    /* Size and position */
     width: 50%;
     float: left;
     padding-top: 9px;
-
-    /* Styles */
     color: #ddd;
     font-size: 12px;
     text-transform: uppercase;
@@ -45,14 +40,11 @@ form label {
 form input[type=text],
 form input[type=email],
 form input[type=password] {
-    /* Size and position */
     width: 50%;
     float: left;
     padding: 8px 5px;
     margin-bottom: 10px;
     font-size: 12px;
-
-    /* Styles */
     background: linear-gradient(#1f2124, #27292c);
     border: 1px solid #000;
     box-shadow:

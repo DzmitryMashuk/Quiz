@@ -14,34 +14,16 @@ class PasswordRecoveryController extends Controller
     /**
      * @Route("/passwordRecovery", name="passwordRecovery")
      */
-    public function passwordRecoveryAction(Request $request, \Swift_Mailer $mailer)
+    public function showAction($productId)
     {
-        $product = $this->getDoctrine()
-            ->getRepository(EmailType::class)
+        $user = $this->getDoctrine()
+            ->getRepository(User::class)
             ->find($productId);
-        $user = new User();
-        $form = $this->createForm(PasswordRecoveryType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            $message = (new \Swift_Message('Password Recovery'))
-                ->setFrom('Dashoid.chern@gmail.com')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'registration/passwordEmail.html.twig'
-                    ),
-                    'text/html'
-                )
-            ;
-            $mailer->send($message);
-            return $this->redirectToRoute("login");
+
+        if (!$user) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $productId
+            );
         }
-        return $this->render(
-            'security/passwordRecovery.html.twig',
-            array('form' => $form->createView())
-        );
     }
 }

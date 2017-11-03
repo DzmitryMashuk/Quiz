@@ -24,7 +24,7 @@ security:
             anonymous: ~
 
             form_login:
-                default_target_path: mainMenu
+                default_target_path: userMainMenu
                 login_path: login
                 check_path: login
 

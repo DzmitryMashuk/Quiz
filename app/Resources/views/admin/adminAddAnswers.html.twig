@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {{ include('header.html.twig') }}
+{% endblock %}
+<link rel="stylesheet" href="{{ asset('css/AddAnswers.css') }}" />
+    <div id="grad">
+        <img src="{{ asset('bundles/science.png') }}" class="image1"/>
+        <p class="www">Enter the answers:</p>
+        {% block form %}
+            {{ form_start(form) }}
+        <div class="answ">
+            {{ form_row(form.answer1) }}
+            {{ form_row(form.answer2) }}
+            {{ form_row(form.answer3) }}
+            {{ form_row(form.answer4) }}
+        </div>
+            <button type="submit">Save</button>
+            {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+

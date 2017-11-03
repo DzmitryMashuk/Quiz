@@ -40,6 +40,11 @@ class Question
     {
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
      * Get id
      *
@@ -69,7 +74,7 @@ class Question
     /**
      * @return bool
      */
-    public function getStatus():boolean
+    public function getStatus()
     {
         return $this->status;
     }
@@ -77,7 +82,7 @@ class Question
     /**
      * @param boolean $status
      */
-    public function setStatus(boolean $status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }

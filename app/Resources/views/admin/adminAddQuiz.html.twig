@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {{ include('header.html.twig') }}
+    <link rel="stylesheet" href="{{ asset('css/AddQuiz.css') }}" />
+{% endblock %}
+{% block body %}
+    <div id="grad">
+        <img src="{{ asset('bundles/science.png') }}" class="image1"/>
+        <p class="www">Enter the quiz name:</p>
+        {% block form %}
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            <button type="submit">Save</button>
+            {{ form_end(form) }}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
+</body>
+</html>
