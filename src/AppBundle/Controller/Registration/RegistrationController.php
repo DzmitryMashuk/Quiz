@@ -28,7 +28,11 @@ class RegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            EmailManager::sendMail($mailer, $user->getEmail(), $this->renderView('registration/email.html.twig', array( 'userName'=>$user->getUsername() )));
+            EmailManager::sendMail($mailer, $user->getEmail(), $this->renderView(
+                'registration/email.html.twig', array(
+                'id' => $user->getId(),
+                'userName' => $user->getUsername()
+            )));
 
             return $this->redirectToRoute("login");
         }
@@ -40,10 +44,12 @@ class RegistrationController extends Controller
     }
 
     /**
-     * @Route("/email", name="email")
+     * @Route("/email/{id}", name="email")
      */
     public function emailAction(Request $request)
     {
+        $userId = $request->get('id');
+//        $sql = "UPDATE app_users SET active = TRUE WHERE id = $userId;";
         return $this->redirectToRoute('userMainMenu');
     }
 }
