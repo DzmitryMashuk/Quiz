@@ -16,7 +16,7 @@ class QuestionController extends Controller
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setIdNextQuestion(1);
+            $question->setFinishQuestion(1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
