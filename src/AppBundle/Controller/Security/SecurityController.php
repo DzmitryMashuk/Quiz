@@ -17,7 +17,6 @@ class SecurityController extends Controller
     public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
         $error = $authUtils->getLastAuthenticationError();
-
         $lastUsername = $authUtils->getLastUsername();
 
         return $this->render('security/security.html.twig', array(
@@ -57,7 +56,6 @@ class SecurityController extends Controller
     {
         $question = new Question();
         $form = $this->createForm(QuestionType::class, $question);
-
         $form->handleRequest($request);
 
         return $this->render(

@@ -10,7 +10,6 @@ body {
     width: 350px;
 }
 
-.button,
 button {
     position: absolute;
     text-decoration:none;
@@ -36,17 +35,15 @@ button {
     left: 70%;
 }
 
-.button {
+.next {
     top: 80%;
-    left: 85%;
+    left: 80%;
 }
 
-.button:hover,
 button:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-.button:active,
 button:active {
     background: #629755;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
@@ -54,24 +51,22 @@ button:active {
     border-color: rgba(0,0,0,0.9);
 }
 
-.no-boxshadow .button:hover,
 .no-boxshadow button:hover {
     background: #629755;
 }
-
-form input[type=text] {
+.answ {
     position: absolute;
-    top: 50%;
+    top: 43%;
     left: 30%;
-    width: 750px;
-    height: 150px;
+
+}
+
+form input {
+    width: 400px;
+    height: 50px;
     border-radius: 38px;
     text-align: start;
     font:30px Ubuntu, Lato, sans-serif;
-}
-
-form label {
-    visibility: hidden;
 }
 
 .question:active, :hover, :focus {
@@ -79,18 +74,13 @@ form label {
     outline-offset: 0;
 }
 
-#grad {
-    height: 600px;
-    background: #00bc08;
-    background: -webkit-linear-gradient(#00bc08, #cdf93e);
-    background: -o-linear-gradient(#00bc08, #cdf93e);
-    background: -moz-linear-gradient(#00bc08, #cdf93e);
-    background: linear-gradient(#00bc08, #cdf93e);
+form label {
+    visibility: hidden;
 }
 
 .www {
     position: absolute;
-    top: 30%;
+    top: 25%;
     left:31%;
     color: #000000;
     font-family: Mistral, Cursive;
@@ -105,4 +95,13 @@ form label {
     border-radius: 4px;
     text-shadow: 8px 6px 9px #cfe8ad;
     filter: dropshadow(color=#999494, offx=8, offy=6);
+}
+
+#grad {
+    height: 600px;
+    background: #00bc08;
+    background: -webkit-linear-gradient(#00bc08, #cdf93e);
+    background: -o-linear-gradient(#00bc08, #cdf93e);
+    background: -moz-linear-gradient(#00bc08, #cdf93e);
+    background: linear-gradient(#00bc08, #cdf93e);
 }

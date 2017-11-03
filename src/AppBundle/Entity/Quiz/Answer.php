@@ -24,9 +24,30 @@ class Answer
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="$answer1", type="string", length=50)
      */
-    private $name;
+    private $answer1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$answer2", type="string", length=50)
+     */
+    private $answer2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$answer3", type="string", length=50)
+     */
+    private $answer3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$answer4", type="string", length=50)
+     */
+    private $answer4;
 
     /**
      * @var bool
@@ -54,29 +75,90 @@ class Answer
     }
 
     /**
-     * Set name
+     * Set answer1
      *
-     * @param string $name
+     * @param string $answer1
      */
-    public function setName($name)
+    public function setAnswer1($answer1)
     {
-        $this->name = $name;
+        $this->answer1 = $answer1;
     }
 
     /**
-     * Get name
+     * Set answer2
+     *
+     * @param string $answer2
+     */
+
+    public function setAnswer2($answer2)
+    {
+        $this->answer2 = $answer2;
+    }
+
+    /**
+     * Set answer3
+     *
+     * @param string $answer3
+     */
+    public function setAnswer3($answer3)
+    {
+        $this->answer3 = $answer3;
+    }
+
+    /**
+     * Set answer4
+     *
+     * @param string $answer4
+     */
+    public function setAnswer4($answer4)
+    {
+        $this->answer4 = $answer4;
+    }
+
+    /**
+     * Get answer1
      *
      * @return string
      */
-    public function getName()
+    public function getAnswer1()
     {
-        return $this->name;
+        return $this->answer1;
+    }
+
+    /**
+     * Get answer2
+     *
+     * @return string
+     */
+    public function getAnswer2()
+    {
+        return $this->answer2;
+    }
+
+    /**
+     * Get answer3
+     *
+     * @return string
+     */
+    public function getAnswer3()
+    {
+        return $this->answer3;
+    }
+
+    /**
+     * Get answer4
+     *
+     * @return string
+     */
+    public function getAnswer4()
+    {
+        return $this->answer4;
     }
 
     /**
      * Set correct
      *
-     * @param boolean $correct
+     * @param integer $correct
      */
     public function setCorrect($correct)
     {
@@ -86,7 +168,7 @@ class Answer
     /**
      * Get correct
      *
-     * @return bool
+     * @return integer
      */
     public function getCorrect()
     {
