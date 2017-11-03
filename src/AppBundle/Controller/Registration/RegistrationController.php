@@ -4,12 +4,14 @@ namespace AppBundle\Controller\Registration;
 
 use AppBundle\Form\RegistrationType;
 use AppBundle\Entity\User;
+use AppBundle\Repository\UserRepository;
 use AppBundle\Service\EmailManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class RegistrationController extends Controller
 {
@@ -49,7 +51,12 @@ class RegistrationController extends Controller
     public function emailAction(Request $request)
     {
         $userId = $request->get('id');
-//        $sql = "UPDATE app_users SET active = TRUE WHERE id = $userId;";
-        return $this->redirectToRoute('userMainMenu');
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(User::class)->find($userId);
+        $product->setActive(true);
+        $em->flush();
+
+        return $this->redirectToRoute('login');
     }
 }
