@@ -53,8 +53,8 @@ class RegistrationController extends Controller
         $userId = $request->get('id');
 
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository(User::class)->find($userId);
-        $product->setActive(true);
+        $user = $em->getRepository(User::class)->find($userId);
+        $user->setActive(true);
         $em->flush();
 
         return $this->redirectToRoute('login');
