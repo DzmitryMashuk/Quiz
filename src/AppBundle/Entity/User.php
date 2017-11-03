@@ -49,7 +49,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(name="active", type="boolean")
      */
-    private $Active;
+    private $active;
 
     /**
      * @ORM\Column(name="roles", type="json_array")
@@ -58,7 +58,7 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->Active = true;
+        $this->active = false;
     }
 
     public function getId()
@@ -119,6 +119,16 @@ class User implements UserInterface, \Serializable
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    public function setActive(bool $active)
+    {
+        $this->active = $active;
+    }
+
+    public function getActive()
+    {
+        return $this->active;
     }
 
     public function eraseCredentials()
