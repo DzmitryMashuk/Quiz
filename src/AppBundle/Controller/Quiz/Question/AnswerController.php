@@ -18,6 +18,7 @@ class AnswerController extends Controller
         $answer = new Answer();
         $form = $this->createForm(AnswerType::class, $answer);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $answer->setIdQuestion(1);
             $answer->setCorrect(1);

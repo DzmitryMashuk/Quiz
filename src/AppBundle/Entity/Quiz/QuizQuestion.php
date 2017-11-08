@@ -5,28 +5,17 @@ namespace AppBundle\Entity\Quiz;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * QuizQuestion
- *
  * @ORM\Table(name="app_quiz_question")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Quiz_QuestionRepository")
  */
 class QuizQuestion
 {
     /**
-     * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
-     */
-    private $idUser;
 
     /**
      * @var int
@@ -44,8 +33,6 @@ class QuizQuestion
 
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -53,29 +40,11 @@ class QuizQuestion
         return $this->id;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     */
-    public function setIdUser($idUser)
+    public function setId($id)
     {
-        $this->idQuiz = $idUser;
+        $this->id = $id;
     }
-
     /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
-
-    /**
-     * Set idQuiz
-     *
      * @param integer $idQuiz
      */
     public function setIdQuiz($idQuiz)
@@ -84,8 +53,6 @@ class QuizQuestion
     }
 
     /**
-     * Get idQuiz
-     *
      * @return int
      */
     public function getIdQuiz()
@@ -94,8 +61,6 @@ class QuizQuestion
     }
 
     /**
-     * Set idQuestion
-     *
      * @param integer $idQuestion
      */
     public function setIdQuestion($idQuestion)
@@ -104,8 +69,6 @@ class QuizQuestion
     }
 
     /**
-     * Get idQuestion
-     *
      * @return int
      */
     public function getIdQuestion()
