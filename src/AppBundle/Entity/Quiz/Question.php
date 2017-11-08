@@ -85,7 +85,7 @@ class Question
     /**
      * @param boolean $finishQuestion
      */
-    public function setFinishQuestion($finishQuestion)
+    public function setFinishQuestion(bool $finishQuestion)
     {
         $this->finishQuestion = $finishQuestion;
     }
