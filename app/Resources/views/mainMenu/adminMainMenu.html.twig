@@ -6,14 +6,14 @@
 </head>
 <body>
 {% block header %}
-    {{ include('header.html.twig') }}
+    {{ include('adminHeader.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/adminMainMenu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/AdminMainMenu.css') }}" />
     <div id="grad">
-        <p class="www">Welcome, admin!</p>
+        <p class="www">Welcome, {{ app.user.username }}!</p>
         <form>
-            <input list="Quizzes" class="quizzes" placeholder="Please, select a quiz">
+            <input list="Quizzes" class="quizzes" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
                 <option value="Quiz1">
                 <option value="Quiz2">

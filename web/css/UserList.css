@@ -1,0 +1,73 @@
+table {
+    position: absolute;
+    left: 15%;
+    top: 35%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    text-align: left;
+    border-collapse: collapse;
+    border-radius: 20px;
+    box-shadow: 0 0 0 10px #369643;
+    color: #452F21;
+}
+
+thead,
+th {
+    padding: 10px 35px;
+    background: white;
+}
+table th:first-child {
+    border-top-left-radius: 20px;
+}
+table th:last-child {
+    border-top-right-radius: 20px;
+}
+td {
+    border-top: 10px solid #369643;
+    border-right: 10px solid #369643;
+    padding: 10px;
+    background: white;
+}
+
+table td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+table td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+.www {
+    position: absolute;
+    top: 10%;
+    left:38%;
+    color: #000000;
+    font-family: Mistral, Cursive;
+    font-size: 70px;
+    font-weight: bolder;
+    font-variant: small-caps;
+    text-decoration: none;
+    letter-spacing: 15px;
+    text-transform: none;
+    background-position: top;
+    visibility: visible;
+    border-radius: 4px;
+    text-shadow: 8px 6px 9px #cfe8ad;
+    filter: dropshadow(color=#999494, offx=8, offy=6);
+}
+
+.id {
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #92000b;
+}
+
+#grad {
+    height: 1700px;
+    background: #00bc08;
+    background: -webkit-linear-gradient(#00bc08, #cdf93e);
+    background: -o-linear-gradient(#00bc08, #cdf93e);
+    background: -moz-linear-gradient(#00bc08, #cdf93e);
+    background: linear-gradient(#00bc08, #cdf93e);
+}

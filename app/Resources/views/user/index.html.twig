@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %}
-
+{% block header %}
+    {{ include('adminHeader.html.twig') }}
+{% endblock %}
 {% block body %}
-    <h1>Users list</h1>
-
+    <link rel="stylesheet" href="{{ asset('css/UserList.css') }}" />
+    <div id="grad">
+    <p class="www">Users list</p>
     <table>
         <thead>
             <tr>
@@ -15,28 +17,16 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('adminUserList_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a class="id" href="{{ path('adminUserList_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.password }}</td>
                 <td>{{ user.email }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('adminUserList_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('adminUserList_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('adminUserList_new') }}">Create a new user</a>
-        </li>
-    </ul>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
 {% endblock %}

@@ -20,7 +20,6 @@ body {
 }
 
 #start {
-    position: absolute;
     top: 65%;
     left: 40%;
 }
@@ -44,7 +43,7 @@ body {
 #edit,
 #add {
     padding:14px 30px;
-    font:20px Verdana, Geneva, sans-serif;
+    font-size: 20px;
 }
 
 .button {
@@ -93,8 +92,7 @@ body {
 
 .www {
     position: absolute;
-    top: 22%;
-    left:31%;
+    text-align: center;
     color: #000000;
     font-family: Mistral, Cursive;
     font-size: 70px;

@@ -1,40 +1,34 @@
-{% extends 'base.html.twig' %}
-
+{% block header %}
+    {{ include('adminHeader.html.twig') }}
+{% endblock %}
 {% block body %}
-    <h1>User</h1>
-
+    <link rel="stylesheet" href="{{ asset('css/User.css') }}" />
+    <div id="grad">
+        <p class="www">User</p>
     <table>
-        <tbody>
+        <thead>
             <tr>
                 <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
                 <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
                 <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
                 <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
                 <td>{{ user.email }}</td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('adminUserList_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('adminUserList_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
+            <a href="{{ path('adminUserList_index') }}" class="button">Back to the list</a>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="delete" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
 {% endblock %}

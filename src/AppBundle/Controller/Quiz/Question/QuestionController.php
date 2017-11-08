@@ -1,5 +1,6 @@
 <?php
 namespace AppBundle\Controller\Quiz\Question;
+
 use AppBundle\Form\QuestionType;
 use AppBundle\Entity\Quiz\Question;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -16,7 +17,7 @@ class QuestionController extends Controller
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setIdNextQuestion(1);
+            $question->setFinishQuestion(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();

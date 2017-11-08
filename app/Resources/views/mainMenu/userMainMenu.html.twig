@@ -9,11 +9,11 @@
     {{ include('header.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/mainMenu.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/MainMenu.css') }}" />
     <div id="grad">
-        <p class="www">Welcome, user!</p>
+        <p class="www">Welcome, {{ app.user.username }}!</p>
         <form>
-            <input list="Quizzes" class="quizzes" placeholder="Please, select a quiz">
+            <input list="Quizzes" class="quizzes" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
                 <option value="Quiz1">
                 <option value="Quiz2">

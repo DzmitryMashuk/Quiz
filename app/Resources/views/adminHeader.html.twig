@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="{{ asset('css/Header.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/AdminHeader.css') }}" />
 <html>
 <body>
 <ul class="header">
     <li><img src="{{ asset('bundles/quiz.png') }}" class="image"/></li>
-    <li><a href="{{ url('userMainMenu') }}">Home</a></li>
+    <li><a href="{{ url('adminMainMenu') }}">Home</a></li>
     <li><a>About</a></li>
+    <li><a href="{{ url('adminUserList_index') }}">Users</a></li>
     <li style="float:right"><a href="{{ path('logout') }}">Exit</a></li>
     <li style="float:right"><a id="name">{{ app.user.username }}</a></li>
 </ul>

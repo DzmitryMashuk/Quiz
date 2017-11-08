@@ -1,0 +1,115 @@
+table {
+    position: absolute;
+    left: 18%;
+    top: 35%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    text-align: left;
+    border-collapse: collapse;
+    border-radius: 20px;
+    box-shadow: 0 0 0 10px #369643;
+    color: #452F21;
+}
+
+thead,
+th {
+    padding: 10px 35px;
+    background: white;
+}
+table th:first-child {
+    border-top-left-radius: 20px;
+}
+table th:last-child {
+    border-top-right-radius: 20px;
+}
+td {
+    border-top: 10px solid #369643;
+    border-right: 10px solid #369643;
+    padding: 10px;
+    background: white;
+}
+
+table td:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+table td:last-child {
+    border-bottom-right-radius: 20px;
+}
+
+.www {
+    position: absolute;
+    top: 10%;
+    left:45%;
+    color: #000000;
+    font-family: Mistral, Cursive;
+    font-size: 70px;
+    font-weight: bolder;
+    font-variant: small-caps;
+    text-decoration: none;
+    letter-spacing: 15px;
+    text-transform: none;
+    background-position: top;
+    visibility: visible;
+    border-radius: 4px;
+    text-shadow: 8px 6px 9px #cfe8ad;
+    filter: dropshadow(color=#999494, offx=8, offy=6);
+}
+
+.button {
+    top: 60%;
+    left: 65%;
+}
+
+.delete {
+    top: 60%;
+    left: 43%;
+}
+
+.delete,
+.button {
+    position: absolute;
+    text-decoration:none;
+    text-align:center;
+    padding:14px 82px;
+    border:groove 2px #010a01;
+    -webkit-border-radius:38px;
+    -moz-border-radius:38px;
+    border-radius: 38px;
+    font:33px Verdana, Geneva, sans-serif;
+    font-weight:bold;
+    color:#ebf5f5;
+    background-color:#031a13;
+    -webkit-box-shadow:8px 12px 20px #144507, inset 0px 2px 4px #ffffff;
+    -moz-box-shadow: 8px 12px 20px #144507,  inset 0px 2px 4px #ffffff;
+    box-shadow:8px 12px 20px #144507, inset 0px 2px 4px #ffffff;
+    text-shadow: 4px 4px 7px #02170b;
+    filter: dropshadow(color=#02170b, offx=4, offy=4);
+}
+
+.delete:hover,
+.button:hover {
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.delete:active,
+.button:active {
+    background: #629755;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
+    border-color: #000; /* Fallback */
+    border-color: rgba(0,0,0,0.9);
+}
+
+.no-boxshadow .delete:hover,
+.no-boxshadow .button:hover {
+    background: #629755;
+}
+
+#grad {
+    height: 600px;
+    background: #00bc08;
+    background: -webkit-linear-gradient(#00bc08, #cdf93e);
+    background: -o-linear-gradient(#00bc08, #cdf93e);
+    background: -moz-linear-gradient(#00bc08, #cdf93e);
+    background: linear-gradient(#00bc08, #cdf93e);
+}

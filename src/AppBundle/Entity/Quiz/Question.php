@@ -40,11 +40,6 @@ class Question
     {
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * Get id
      *
@@ -90,7 +85,7 @@ class Question
     /**
      * @param boolean $finishQuestion
      */
-    public function setFinishQuestion(boolean $finishQuestion)
+    public function setFinishQuestion($finishQuestion)
     {
         $this->finishQuestion = $finishQuestion;
     }

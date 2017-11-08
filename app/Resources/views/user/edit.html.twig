@@ -1,4 +1,6 @@
-{% extends 'base.html.twig' %}
+{% block header %}
+    {{ include('adminHeader.html.twig') }}
+{% endblock %}
 
 {% block body %}
     <h1>User edit</h1>
@@ -18,4 +20,8 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endblock %}
+
+{% block footer %}
+    {{ include('footer.html.twig') }}
 {% endblock %}
