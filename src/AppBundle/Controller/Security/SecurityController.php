@@ -51,6 +51,7 @@ class SecurityController extends Controller
 
                 return $this->redirectToRoute('adminMainMenu');
             }else{
+                echo "<script>alert(\"You don't have access rights\");</script>";
 
                 return $this->redirectToRoute('userMainMenu');
             }
