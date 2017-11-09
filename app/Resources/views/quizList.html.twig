@@ -1,0 +1,25 @@
+{% block header %}
+    {{ include('adminHeader.html.twig') }}
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/UserList.css') }}" />
+    <div id="grad">
+        <p class="www">Users list</p>
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+            </thead>
+            <tbody>
+            {% for question in question %}
+                <tr>
+                    <td>{{ question.question }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
