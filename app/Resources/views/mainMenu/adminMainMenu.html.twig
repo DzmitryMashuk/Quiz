@@ -15,9 +15,9 @@
         <form>
             <input list="Quizzes" class="quizzes" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
-                <option value="Quiz1">
-                <option value="Quiz2">
-                <option value="NewQuiz">
+                {% for quiz in quiz %}
+                    <option value="{{ quiz.name }}">
+                {% endfor %}
             </datalist>
         </form>
         <a href="{{ url('userQuizPage') }}" id="start" class="button">Start</a>

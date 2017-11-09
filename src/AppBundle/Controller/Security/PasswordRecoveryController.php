@@ -31,6 +31,7 @@ class PasswordRecoveryController extends Controller
                     'id' => $user->getId(),
                 )));
             }
+
             return $this->redirectToRoute('login');
         }
 
@@ -61,6 +62,7 @@ class PasswordRecoveryController extends Controller
 
             return $this->redirectToRoute('login');
         }
+
         return $this->render(
             'security/changePassword.html.twig',
             array('form' => $form->createView())
