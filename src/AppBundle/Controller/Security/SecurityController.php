@@ -3,6 +3,8 @@
 namespace AppBundle\Controller\Security;
 
 use AppBundle\Entity\Quiz\Question;
+use AppBundle\Entity\User;
+use AppBundle\Form\LoginType;
 use AppBundle\Form\QuestionType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,33 +36,24 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/goAdminPanel", name="goAdminPanel")
      */
-    public function adminAction(Request $request)
+    public function goAdminPanelAction(Request $request)
     {
-        $question = new Question();
-        $form = $this->createForm(QuestionType::class, $question);
+        $username = $request->get('username');
 
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneBy(['username' => $username]);
 
-        return $this->render(
-            'question/question.html.twig',
-            array('form' => $form->createView())
-        );
-    }
+        if ($user != null){
 
-    /**
-     * @Route("/user", name="user")
-     */
-    public function userAction(Request $request)
-    {
-        $question = new Question();
-        $form = $this->createForm(QuestionType::class, $question);
-        $form->handleRequest($request);
+            if ($user->getRoles() == ['ROLE_ADMIN']){
 
-        return $this->render(
-            'mainMenu/userMainMenu.html.twig',
-            array('form' => $form->createView())
-        );
+                return $this->redirectToRoute('adminMainMenu');
+            }else{
+
+                return $this->redirectToRoute('userMainMenu');
+            }
+        }
     }
 }

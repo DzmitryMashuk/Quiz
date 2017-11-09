@@ -31,7 +31,6 @@ class QuizQuestion
      */
     private $idQuestion;
 
-
     /**
      * @return int
      */
@@ -44,6 +43,7 @@ class QuizQuestion
     {
         $this->id = $id;
     }
+
     /**
      * @param integer $idQuiz
      */

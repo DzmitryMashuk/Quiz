@@ -10,6 +10,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Quiz\Question;
+use AppBundle\Form\AnswerType;
+use AppBundle\Entity\Quiz\Answer;
 
 class QuizController extends Controller
 {
@@ -23,11 +25,11 @@ class QuizController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $quiz->setLeaderFirst(1);
-            $quiz->setLeaderSecond(1);
-            $quiz->setLeaderThird(1);
-            $quiz->setStatus(true);
-            $quiz->setBlock(true);
+            $quiz->setLeaderFirst(0);
+            $quiz->setLeaderSecond(0);
+            $quiz->setLeaderThird(0);
+            $quiz->setStatus(false);
+            $quiz->setBlock(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($quiz);
             $em->flush();
@@ -64,11 +66,41 @@ class QuizController extends Controller
             $em->persist($quiz_question);
             $em->flush();
 
-            return $this->redirectToRoute("adminAddAnswers");
+            return $this->redirectToRoute("adminAddAnswers", array(
+                'questionId' => $questionWithId->getId(),
+                'quizId' => $request->get('quizId')
+            ));
         }
 
         return $this->render(
             'admin/adminAddQuestion.html.twig',
+            array('form' => $form->createView())
+        );
+    }
+
+    /**
+     * @Route("/adminAddAnswers", name="adminAddAnswers")
+     */
+    public function answerAction(Request $request)
+    {
+        $answer = new Answer();
+        $form = $this->createForm(AnswerType::class, $answer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answer->setIdQuestion($request->get('questionId'));
+            $answer->setCorrect(1);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($answer);
+            $em->flush();
+
+            return $this->redirectToRoute("adminAddQuestion", array(
+                'quizId' => $request->get('quizId')
+            ));
+        }
+
+        return $this->render(
+            'admin/adminAddAnswers.html.twig',
             array('form' => $form->createView())
         );
     }
