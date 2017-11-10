@@ -1,19 +1,26 @@
 {% block header %}
-    {{ include('adminHeader.html.twig') }}
+    {{ include('header.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/UserList.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/Quizzes.css') }}" />
     <div id="grad">
-        <p class="www">Users list</p>
+        <p class="www">Quizzes</p>
         <table>
             <thead>
             <tr>
-                <th>Username</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Leader</th>
+                <th>Users</th>
+                <th>Date of creating</th>
+            </tr>
             </thead>
             <tbody>
-            {% for question in question %}
+            {% for quiz in quiz %}
                 <tr>
-                    <td>{{ question.question }}</td>
+                    <td>{{ quiz.name }}</td>
+                    <td>{{ quiz.block }}</td>
+                    <td>{{ quiz.leaderFirst }}</td>
                 </tr>
             {% endfor %}
             </tbody>

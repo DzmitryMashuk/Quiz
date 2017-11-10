@@ -34,26 +34,4 @@ class SecurityController extends Controller
     {
 
     }
-
-    /**
-     * @Route("/goAdminPanel", name="goAdminPanel")
-     */
-    public function goAdminPanelAction(Request $request)
-    {
-        $username = $request->get('username');
-
-        $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository(User::class)->findOneBy(['username' => $username]);
-
-        if ($user != null){
-
-            if ($user->getRoles() == ['ROLE_ADMIN']){
-
-                return $this->redirectToRoute('adminMainMenu');
-            } else {
-
-                return $this->redirectToRoute('userMainMenu');
-            }
-        }
-    }
 }
