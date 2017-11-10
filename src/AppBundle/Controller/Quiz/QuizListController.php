@@ -43,4 +43,21 @@ class QuizListController extends Controller
             'quiz' => $quiz,
         ));
     }
+
+    /**
+     *
+     * @Route("/quizList", name="quizList")
+     * @Method("GET")
+     */
+    public function userQuizListAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $quiz = $em->getRepository(Quiz::class)->findAll();
+
+        return $this->render('quizList.html.twig', array(
+            'quiz' => $quiz,
+        ));
+    }
+
 }

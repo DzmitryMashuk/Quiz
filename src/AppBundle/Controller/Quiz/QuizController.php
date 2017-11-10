@@ -89,7 +89,6 @@ class QuizController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answer->setIdQuestion($request->get('questionId'));
-            $answer->setCorrect(1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($answer);
             $em->flush();

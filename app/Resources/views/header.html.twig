@@ -5,9 +5,9 @@
 <ul class="header">
     <li><img src="{{ asset('bundles/quiz.png') }}" class="image"/></li>
     <li><a href="{{ url('userMainMenu') }}">Home</a></li>
-    <li><a href="{{ url('goAdminPanel', {'username': app.user.username}) }}">GoAdminPanel</a></li>
+    <li><a href="{{ url('quizList') }}">Quizzes</a></li>
     <li style="float:right"><a href="{{ path('logout') }}">Exit</a></li>
-    <li style="float:right"><a id="name">{{ app.user.username }}</a></li>
+    <li style="float:right"><a href="{{ url('adminMainMenu') }}" id="name">{{ app.user.username }}</a></li>
 </ul>
 {% block body %}
 {% endblock %}
