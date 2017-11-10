@@ -50,8 +50,7 @@ class SecurityController extends Controller
             if ($user->getRoles() == ['ROLE_ADMIN']){
 
                 return $this->redirectToRoute('adminMainMenu');
-            }else{
-                echo "<script>alert(\"You don't have access rights\");</script>";
+            } else {
 
                 return $this->redirectToRoute('userMainMenu');
             }

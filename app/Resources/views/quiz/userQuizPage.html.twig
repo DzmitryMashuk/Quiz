@@ -34,7 +34,7 @@
             </div>
         </form>
         <a href="#" class="confirm">Confirm</a>
-        <a href="#" class="next">Next</a>
+        <a href="{{ url('userQuizPage', {'idUser': idUser}, {'quizName': quizName}) }}" class="next">Next</a>
     </div>
 {% endblock %}
 {% block footer %}
