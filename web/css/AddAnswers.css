@@ -35,11 +35,6 @@ button {
     left: 70%;
 }
 
-.next {
-    top: 80%;
-    left: 80%;
-}
-
 button:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
@@ -54,11 +49,11 @@ button:active {
 .no-boxshadow button:hover {
     background: #629755;
 }
+
 .answ {
     position: absolute;
     top: 43%;
-    left: 30%;
-
+    left: 33%;
 }
 
 form input {
@@ -69,13 +64,19 @@ form input {
     font:30px Ubuntu, Lato, sans-serif;
 }
 
-.question:active, :hover, :focus {
-    outline: 0;
-    outline-offset: 0;
+form input[type=radio] {
+    width: 45px;
 }
 
 form label {
     visibility: hidden;
+}
+
+.correct {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 35%;
+    left: -20%;
 }
 
 .www {
