@@ -35,13 +35,6 @@ class UserAnswer
      */
     private $idQuizQuestion;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_answer", type="integer")
-     */
-    private $idAnswer;
-
 //    /**
 //     * @var \DateTime
 //     *
@@ -85,22 +78,6 @@ class UserAnswer
     public function getIdQuizQuestion()
     {
         return $this->idQuizQuestion;
-    }
-
-    /**
-     * @param int $idAnswer
-     */
-    public function setIdAnswer(int $idAnswer)
-    {
-        $this->idAnswer = $idAnswer;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdAnswer()
-    {
-        return $this->idAnswer;
     }
 
 //    /**
