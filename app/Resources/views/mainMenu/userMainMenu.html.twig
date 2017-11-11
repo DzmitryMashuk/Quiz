@@ -13,7 +13,7 @@
     <div id="grad">
         <p class="www">Welcome, {{ app.user.username }}!</p>
         <form>
-            <input list="Quizzes" id="quizName" class="quizzes" name="quizName" placeholder=" Please, select a quiz">
+            <input list="Quizzes" id="quizName" class="quizzes" id="quizName" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
                 {% for quiz in quiz %}
                     <option value="{{ quiz.name }}">
