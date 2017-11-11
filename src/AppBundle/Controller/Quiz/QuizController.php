@@ -59,12 +59,6 @@ class QuizController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
-//            $questionWithId = $em->getRepository(Question::class)->findOneBy(['question' => $question->getQuestion()]);
-//            $quiz_question = new QuizQuestion();
-//            $quiz_question->setIdQuiz($request->get('quizId'));
-//            $quiz_question->setIdQuestion($questionWithId->getId());
-//            $em->persist($quiz_question);
-//            $em->flush();
 
             return $this->redirectToRoute("adminAddAnswers", array(
                 'questionId' => $question->getId(),

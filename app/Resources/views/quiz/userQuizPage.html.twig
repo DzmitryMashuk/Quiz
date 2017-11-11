@@ -13,28 +13,28 @@
     <div id="grad">
         <img src="{{ asset('bundles/science.png') }}" class="image1"/>
         <form class="answers">
-            <input type="text" class="question" value="Question1" readonly>
+            <input type="text" class="question" value="{{ question }}" readonly>
             <div class="answers1">
                 <p>
                     <input type="radio" class="radio" id="radio" name="radio">
-                    <label for="radio">Answer1</label>
+                    <label for="radio">{{ answer1 }}</label>
                 </p>
                 <p>
                     <input type="radio" class="radio" id="radio" name="radio">
-                    <label for="radio">Answer2</label>
+                    <label for="radio">{{ answer2 }}</label>
                     </p>
                 <p>
                     <input type="radio" class="radio" id="radio" name="radio">
-                    <label for="radio">Answer3</label>
+                    <label for="radio">{{ answer3 }}</label>
                 </p>
                 <p>
                     <input type="radio" class="radio" id="radio" name="radio">
-                    <label for="radio">Answer4</label>
+                    <label for="radio">{{ answer4 }}</label>
                 </p>
             </div>
         </form>
-        <a href="#" class="confirm">Confirm</a>
-        <a href="{{ url('userQuizPage', {'idUser': idUser}, {'quizName': quizName}) }}" class="next">Next</a>
+        <input id="confirm" onclick="writeUserAnswer('{{ idQuizQuestion }}', '{{ whatQuestion }}', '{{ idUser }}', '{{ question }}', '{{ answer1 }}', '{{ answer2 }}', '{{ answer3}}', '{{ answer4 }}')" type="button" class="confirm" value="Confirm"/>
+        <a href="{{ url('nextQuizPage') }}" class="next">Next</a>
     </div>
 {% endblock %}
 {% block footer %}
@@ -42,3 +42,29 @@
 {% endblock %}
 </body>
 </html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function writeUserAnswer(idQuizQuestion, whatQuestion, idUser, question, answer1, answer2, answer3, answer4) {
+        var radioButton = document.getElementsByName("radio");
+        var indexRadioButton;
+        if (radioButton[0].checked){
+            indexRadioButton = 0;
+        }
+
+        if (radioButton[1].checked){
+            indexRadioButton = 1;
+        }
+
+        if (radioButton[2].checked) {
+            indexRadioButton = 2;
+        }
+
+        if (radioButton[3].checked){
+            indexRadioButton = 3;
+        }
+
+        location.href = "userAnswerWrite?currentAnswer=" + indexRadioButton + "&idQuizQuestion=" + idQuizQuestion + "&whatQuestion=" + whatQuestion + "&idUser=" + idUser + '&question=' + question + '&answer1=' + answer1 + '&answer2=' + answer2 + '&answer3=' + answer3 + '&answer4=' + answer4;
+    }
+</script>

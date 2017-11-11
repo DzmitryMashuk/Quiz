@@ -22,16 +22,72 @@ class QuizPageController extends Controller
         $userId = $request->get('idUser');
         $quizName = $request->get('quizName');
         $em = $this->getDoctrine()->getManager();
-        $userAnswer = $em->getRepository(UserAnswer::class)->findBy(['idUser' => $request->get('idUser')]);
+
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
-        $question = $em->getRepository(Question::class)->findOneBy(['id' => $quizQuestion[0]->getIdQuestion()]);
-        $answer = $em->getRepository(Answer::class)->findOneBy(['idQuestion' => $question->getId()]);
+        $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
 
         return $this->render('quiz/userQuizPage.html.twig', array(
             'idUser' => $userId,
             'quizName' => $quizName,
-            'whatQuestion' => $userAnswer->getWhatQuestion()
+            'idQuizQuestion' => $quizQuestion[0]->getId(),
+            'idQuestion' => $question->getId(),
+            'idAnswer' => $answer->getId(),
+            'whatQuestion' => 0,
+            'question' => $question->getQuestion(),
+            'answer1' => $answer->getAnswer1(),
+            'answer2' => $answer->getAnswer2(),
+            'answer3' => $answer->getAnswer3(),
+            'answer4' => $answer->getAnswer4()
         ));
     }
+
+    /**
+     * @Route("/userAnswerWrite", name="userAnswerWrite")
+     */
+    public function userAnswerWriteAction(Request $request)
+    {
+        $idUser = $request->get('idUser');
+        $idQuizQuestion = $request->get('idQuizQuestion');
+        $whatQuestion = $request->get('whatQuestion');
+
+        $userAnswer = new UserAnswer();
+        $userAnswer->setIdUser($idUser);
+        $userAnswer->setIdQuizQuestion($idQuizQuestion);
+        $userAnswer->setWhatQuestion($whatQuestion);
+        $userAnswer->setCountCorrect($request->get('currentAnswer'));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($userAnswer);
+        $em->flush();
+
+        return $this->render('quiz/userQuizPage.html.twig', array(
+        'idUser' => $idUser,
+        'quizName' => $request->get('quizName'),
+        'idQuizQuestion' => $idQuizQuestion,
+        'idQuestion' => $request->get('idQuestion'),
+        'idAnswer' => $request->get('idAnswer'),
+        'whatQuestion' => $whatQuestion,
+        'question' => $request->get('question'),
+        'answer1' => $request->get('answer1'),
+        'answer2' => $request->get('answer2'),
+        'answer3' => $request->get('answer3'),
+        'answer4' => $request->get('answer4')
+        ));
+    }
+
+    /**
+     * @Route("/nextQuizPage", name="nextQuizPage")
+     */
+    public function nextQuizPageAction(Request $request)
+    {
+        
+
+        return $this->render('quiz/userQuizPage.html.twig', array(
+        'currentAnswer' => $request->get('currentAnswer')
+        ));
+    }
+
+
 }
