@@ -2,27 +2,38 @@
     {{ include('header.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/quizzes.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/FinishQuiz.css') }}" />
     <div id="grad">
-        <p class="www">Quizzes</p>
+        <p class="www">Rating</p>
         <table id="grid">
             <thead>
             <tr>
+                <th data-type="number">Position</th>
                 <th data-type="string">Name</th>
-                <th data-type="number">Status</th>
-                <th data-type="string">Leader</th>
-                <th data-type="number">Users</th>
-                <th data-type="number">Date of creating</th>
+                <th data-type="number">Points</th>
             </tr>
             </thead>
             <tbody>
-            {% for quiz in quiz %}
                 <tr>
-                    <td>{{ quiz.name }}</td>
-                    <td>{{ quiz.block }}</td>
+                    <td>1</td>
                     <td>{{ quiz.leaderFirst }}</td>
+                    <td>71</td>
                 </tr>
-            {% endfor %}
+                <tr>
+                    <td>2</td>
+                    <td>{{ quiz.leaderSecond }}</td>
+                    <td>58</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>{{ quiz.leaderThird }}</td>
+                    <td>56</td>
+                </tr>
+                <tr>
+                    <td>54</td>
+                    <td>{{ app.user.username }}</td>
+                    <td>1</td>
+                </tr>
             </tbody>
         </table>
         <script>
@@ -68,3 +79,13 @@
 {% block footer %}
     {{ include('footer.html.twig') }}
 {% endblock %}
+
+{#
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    function finishQuiz() {
+        location.href = "userFinishQuiz?quizName=" + $("#quizName").val();
+    }
+</script>
+#}
