@@ -57,14 +57,6 @@ class Answer
     private $correct;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id_question", type="integer")
-     */
-    private $idQuestion;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -173,26 +165,6 @@ class Answer
     public function getCorrect()
     {
         return $this->correct;
-    }
-
-    /**
-     * Set idQuestion
-     *
-     * @param integer $idQuestion
-     */
-    public function setIdQuestion($idQuestion)
-    {
-        $this->idQuestion = $idQuestion;
-    }
-
-    /**
-     * Get idQuestion
-     *
-     * @return int
-     */
-    public function getIdQuestion()
-    {
-        return $this->idQuestion;
     }
 }
 

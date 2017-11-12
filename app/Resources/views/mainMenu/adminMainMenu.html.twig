@@ -20,7 +20,7 @@
                 {% endfor %}
             </datalist>
         </form>
-        <a href="{{ url('userQuizPage') }}" id="start" class="button">Start</a>
+        <input id="start" onclick="renderUserQuizPage({{ app.user.id }})" type="button" class="button" value="Start">
         <a href="{{ url('adminAddQuiz') }}" id="add" class="button">Add</a>
         <a id="edit" class="button">Edit</a>
         <input type="button" class="button" id="delete" value="Delete" onclick="deleteQuiz()">
@@ -32,10 +32,14 @@
 </body>
 </html>
 
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
 </script>
 <script type="text/javascript">
     function deleteQuiz() {
         location.href = "adminDeleteQuiz?quizName=" + $("#quizName").val();
+    }
+    function renderUserQuizPage(idUser) {
+        location.href = "userQuizPage?quizName=" + $("#quizName").val() + "&idUser=" + idUser;
     }
 </script>

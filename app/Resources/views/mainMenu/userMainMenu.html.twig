@@ -13,14 +13,14 @@
     <div id="grad">
         <p class="www">Welcome, {{ app.user.username }}!</p>
         <form>
-            <input list="Quizzes" class="quizzes" placeholder=" Please, select a quiz">
+            <input list="Quizzes" id="quizName" class="quizzes" id="quizName" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
                 {% for quiz in quiz %}
                     <option value="{{ quiz.name }}">
                 {% endfor %}
             </datalist>
         </form>
-        <a href="{{ url('userQuizPage') }}" id="start" class="button">Start</a>
+        <input id="start" onclick="renderUserQuizPage({{ app.user.id }})" type="button" class="button" value="Start">
     </div>
 {% endblock %}
 {% block footer %}
@@ -28,3 +28,11 @@
 {% endblock %}
 </body>
 </html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function renderUserQuizPage(idUser) {
+        location.href = "userQuizPage?quizName=" + $("#quizName").val() + "&idUser=" + idUser;
+    }
+</script>

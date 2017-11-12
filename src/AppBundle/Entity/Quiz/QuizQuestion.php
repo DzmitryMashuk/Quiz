@@ -32,6 +32,13 @@ class QuizQuestion
     private $idQuestion;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id_answer", type="integer")
+     */
+    private $idAnswer;
+
+    /**
      * @return int
      */
     public function getId()
@@ -74,5 +81,21 @@ class QuizQuestion
     public function getIdQuestion()
     {
         return $this->idQuestion;
+    }
+
+    /**
+     * @param int $idAnswer
+     */
+    public function setIdAnswer(int $idAnswer)
+    {
+        $this->idAnswer = $idAnswer;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdAnswer()
+    {
+        return $this->idAnswer;
     }
 }
