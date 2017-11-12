@@ -31,11 +31,6 @@ class Question
      */
     private $status = false;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $finishQuestion;
-
     public function __construct()
     {
     }
@@ -80,21 +75,5 @@ class Question
     public function setStatus($status)
     {
         $this->status = $status;
-    }
-
-    /**
-     * @param boolean $finishQuestion
-     */
-    public function setFinishQuestion(bool $finishQuestion)
-    {
-        $this->finishQuestion = $finishQuestion;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getFinishQuestion()
-    {
-        return $this->finishQuestion;
     }
 }
