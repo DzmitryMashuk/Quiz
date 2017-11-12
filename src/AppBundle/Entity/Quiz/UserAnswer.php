@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * userAnswer
  *
  * @ORM\Table(name="app_user_answer")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\userAnswerRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserAnswerRepository")
  */
 class UserAnswer
 {
@@ -24,24 +24,37 @@ class UserAnswer
     /**
      * @var int
      *
-     * @ORM\Column(name="id_quiz_question", type="integer")
+     * @ORM\Column(name="id_user", type="integer")
      */
-    private $idQuizQuestion;
+    private $idUser;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="id_answer", type="integer")
+     * @ORM\Column(name="id_quiz_question", type="integer")
      */
-    private $idAnswer;
+    private $idQuizQuestion;
+
+//    /**
+//     * @var \DateTime
+//     *
+//     * @ORM\Column(name="start_quiz", type="datetime")
+//     */
+//    private $startQuiz;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="start_quiz", type="datetime")
+     * @ORM\Column(name="whatQuestion", type="integer")
      */
-    private $startQuiz;
+    private $whatQuestion = 0;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="countCorrect", type="integer")
+     */
+    private $countCorrect = 0;
 
     /**
      * @return int
@@ -52,7 +65,7 @@ class UserAnswer
     }
 
     /**
-     * @param integer $idQuizQuestion
+     * @param int $idQuizQuestion
      */
     public function setIdQuizQuestion(int $idQuizQuestion)
     {
@@ -67,36 +80,67 @@ class UserAnswer
         return $this->idQuizQuestion;
     }
 
+//    /**
+//     * @param \DateTime $startQuiz
+//     */
+//        public function setStartQuiz(\DateTime $startQuiz)
+//    {
+//        $this->startQuiz = $startQuiz;
+//    }
+//
+//    /**
+//     * @return \DateTime
+//     */
+//    public function getStartQuiz()
+//    {
+//        return $this->startQuiz;
+//    }
+
     /**
-     * @param integer $idAnswer
+     * @param int $whatQuestion
      */
-    public function setIdAnswer(int $idAnswer)
+    public function setWhatQuestion(int $whatQuestion)
     {
-        $this->idAnswer = $idAnswer;
+        $this->whatQuestion = $whatQuestion;
     }
 
     /**
      * @return int
      */
-    public function getIdAnswer()
+    public function getWhatQuestion()
     {
-        return $this->idAnswer;
+        return $this->whatQuestion;
     }
 
     /**
-     * @param \DateTime $startQuiz
+     * @param int $countCorrect
      */
-    public function setStartQuiz(\DateTime $startQuiz)
+    public function setCountCorrect(int $countCorrect)
     {
-        $this->startQuiz = $startQuiz;
+        $this->countCorrect = $countCorrect;
     }
 
     /**
-     * @return \DateTime
+     * @return int
      */
-    public function getStartQuiz()
+    public function getCountCorrect()
     {
-        return $this->startQuiz;
+        return $this->countCorrect;
+    }
+
+    /**
+     * @param int $idUser
+     */
+    public function setIdUser(int $idUser)
+    {
+        $this->idUser = $idUser;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdUser()
+    {
+        return $this->idUser;
     }
 }
-

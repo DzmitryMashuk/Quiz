@@ -59,15 +59,9 @@ class QuizController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
-            $questionWithId = $em->getRepository(Question::class)->findOneBy(['question' => $question->getQuestion()]);
-            $quiz_question = new QuizQuestion();
-            $quiz_question->setIdQuiz($request->get('quizId'));
-            $quiz_question->setIdQuestion($questionWithId->getId());
-            $em->persist($quiz_question);
-            $em->flush();
 
             return $this->redirectToRoute("adminAddAnswers", array(
-                'questionId' => $questionWithId->getId(),
+                'questionId' => $question->getId(),
                 'quizId' => $request->get('quizId')
             ));
         }
@@ -88,9 +82,15 @@ class QuizController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $answer->setIdQuestion($request->get('questionId'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($answer);
+            $em->flush();
+
+            $quiz_question = new QuizQuestion();
+            $quiz_question->setIdQuiz($request->get('quizId'));
+            $quiz_question->setIdQuestion($request->get('questionId'));
+            $quiz_question->setIdAnswer($answer->getId());
+            $em->persist($quiz_question);
             $em->flush();
 
             return $this->redirectToRoute("adminAddQuestion", array(
