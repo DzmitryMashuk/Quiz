@@ -200,9 +200,14 @@ class QuizController extends Controller
         $em->persist($answer);
         $em->flush();
 
-        return $this->render('admin/adminEditQuiz.html.twig',array(
-          //  'quizName' => $quizName,
-            'quiz' => $quiz
+        return $this->render('admin/adminEditQuiz.html.twig', array(
+            'question' => $question->getQuestion(),
+            'answer1' => $answer->getAnswer1(),
+            'answer2' => $answer->getAnswer2(),
+            'answer3' => $answer->getAnswer3(),
+            'answer4' => $answer->getAnswer4(),
+            'correct' => $answer->getCorrect(),
+            'quizName' => $quizName
         ));
     }
 
