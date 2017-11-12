@@ -25,9 +25,7 @@ class UserController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $users = $em->getRepository('AppBundle:User')->findAll();
-
         return $this->render('user/index.html.twig', array(
             'users' => $users,
         ));
@@ -76,7 +74,6 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing user entity.
      *
      * @Route("/{id}/edit", name="adminUserList_edit")
      * @Method({"GET", "POST"})

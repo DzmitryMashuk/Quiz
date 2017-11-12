@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Quiz\Question;
 use AppBundle\Form\AnswerType;
 use AppBundle\Entity\Quiz\Answer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class QuizController extends Controller
 {
@@ -102,5 +103,47 @@ class QuizController extends Controller
             'admin/adminAddAnswers.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+    /**
+     * @Route("/adminDeleteQuiz", name="adminDeleteQuiz")
+     */
+    public function deleteQuizAction(Request $request)
+    {
+        $quizName = $request->get('quizName');
+        $em = $this->getDoctrine()->getManager();
+        $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+        $em->remove($quiz);
+        $em->flush();
+        $quizAll = $em->getRepository(Quiz::class)->findAll();
+
+
+        return $this->render('mainMenu/adminMainMenu.html.twig', array(
+            'quiz' => $quizAll
+        ));
+    }
+
+    /**
+     * @Route("/userFinishQuiz", name="userFinishQuiz")
+     */
+    public function userFinishQuizAction(Request $request)
+    {
+        return $this->render('quiz/userFinishQuiz.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+    /**
+     *
+     * @Route("/userFinishQuiz", name="userFinishQuiz")
+     * @Method("GET")
+     */
+    public function userQuizFinishAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $quiz = $em->getRepository(Quiz::class)->findOneById(46);
+        return $this->render('quiz/userFinishQuiz.html.twig', array(
+            'quiz' => $quiz,
+        ));
     }
 }

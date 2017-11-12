@@ -1,4 +1,5 @@
 .footer {
+    min-width: 750px;
     display: block;
     height: 150px;
     font-size: 20px;

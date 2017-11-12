@@ -91,8 +91,11 @@ body {
 }
 
 .www {
-    position: absolute;
+    display: block;
     text-align: center;
+    position: relative;
+    top: 20%;
+    margin: 0;
     color: #000000;
     font-family: Mistral, Cursive;
     font-size: 70px;
