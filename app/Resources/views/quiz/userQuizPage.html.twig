@@ -33,8 +33,10 @@
                 </p>
             </div>
         </form>
-        <input id="confirm" onclick="writeUserAnswer('{{ idQuizQuestion }}', '{{ quizName }}', '{{ whatQuestion }}', '{{ idUser }}', '{{ idUserAnswer }}', '{{ question }}', '{{ answer1 }}', '{{ answer2 }}', '{{ answer3}}', '{{ answer4 }}')" type="button" class="confirm" value="Confirm"/>
-        <a href="{{ url('nextQuizPage', {'idQuizQuestion': idQuizQuestion, 'quizName': quizName, 'whatQuestion': whatQuestion, 'idUser': idUser, 'idUserAnswer': idUserAnswer, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}" class="next">Next</a>
+        <input id="confirm" onclick="writeUserAnswer('{{ idQuizQuestion }}', '{{ idAnswer }}', '{{ idQuestion }}', '{{ quizName }}', '{{ whatQuestion }}', '{{ idUser }}', '{{ idUserAnswer }}', '{{ countCorrect }}', '{{ question }}', '{{ answer1 }}', '{{ answer2 }}', '{{ answer3}}', '{{ answer4 }}')" type="button" class="confirm" value="Confirm"/>
+        <a href="{{ url('nextQuizPage', {'idQuizQuestion': idQuizQuestion, 'idAnswer': idAnswer, 'idQuestion': idQuestion, 'quizName': quizName, 'whatQuestion': whatQuestion, 'idUser': idUser, 'idUserAnswer': idUserAnswer, 'countCorrect': countCorrect, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}">
+            <input id="next" name="next" type="button" class="next" value="Next"/>
+        </a>
     </div>
 {% endblock %}
 {% block footer %}
@@ -46,26 +48,26 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    function writeUserAnswer(idQuizQuestion, quizName, whatQuestion, idUser, idUserAnswer, question, answer1, answer2, answer3, answer4) {
+    function writeUserAnswer(idQuizQuestion, idAnswer, idQuestion, quizName, whatQuestion, idUser, idUserAnswer, countCorrect, question, answer1, answer2, answer3, answer4) {
         var radioButton = document.getElementsByName("radio");
         var indexRadioButton;
 
         if (radioButton[0].checked){
-            indexRadioButton = 0;
-        }
-
-        if (radioButton[1].checked){
             indexRadioButton = 1;
         }
 
-        if (radioButton[2].checked) {
+        if (radioButton[1].checked){
             indexRadioButton = 2;
         }
 
-        if (radioButton[3].checked){
+        if (radioButton[2].checked) {
             indexRadioButton = 3;
         }
 
-        location.href = "userAnswerWrite?currentAnswer=" + indexRadioButton + "&quizName=" + quizName + "&idQuizQuestion=" + idQuizQuestion + "&whatQuestion=" + whatQuestion + "&idUser=" + idUser + '&question=' + question + "&idUserAnswer=" + idUserAnswer + '&answer1=' + answer1 + '&answer2=' + answer2 + '&answer3=' + answer3 + '&answer4=' + answer4;
+        if (radioButton[3].checked){
+            indexRadioButton = 4;
+        }
+
+        location.href = "userAnswerWrite?currentAnswer=" + indexRadioButton + "&idAnswer=" + idAnswer + "&idQuestion=" + idQuestion + "&quizName=" + quizName + "&idQuizQuestion=" + idQuizQuestion + "&whatQuestion=" + whatQuestion + "&countCorrect=" + countCorrect + "&idUser=" + idUser + "&idUserAnswer=" + idUserAnswer + '&question=' + question + '&answer1=' + answer1 + '&answer2=' + answer2 + '&answer3=' + answer3 + '&answer4=' + answer4;
     }
 </script>
