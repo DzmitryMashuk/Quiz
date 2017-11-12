@@ -38,7 +38,7 @@ class QuizPageController extends Controller
             'answer1' => $answer->getAnswer1(),
             'answer2' => $answer->getAnswer2(),
             'answer3' => $answer->getAnswer3(),
-            'answer4' => $answer->getAnswer4()
+            'answer4' => $answer->getAnswer4(),
         ));
     }
 

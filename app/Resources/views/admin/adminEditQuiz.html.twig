@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {{ include('header.html.twig') }}
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/EditQuiz.css') }}" />
+    <div id="grad">
+        <img src="{{ asset('images/science.png') }}" class="image1"/>
+        <form class="answers">
+            <input type="text" class="question" value="{{ question }}">
+            <div class="answers1">
+                <p>
+                    <input type="text" class="answer" value="{{ answer1 }}">
+
+                </p>
+                <p>
+                    <input type="text" class="answer" value="{{ answer2 }}">
+                </p>
+                <p>
+                    <input type="text" class="answer" value="{{ answer3 }}">
+                </p>
+                <p>
+                    <input type="text" class="answer" value="{{ answer4 }}">
+                </p>
+            </div>
+        </form>
+        <input type="text" class="correct" value="Correct answer - {{ correct }}" readonly>
+        <input id="confirm" type="button" class="confirm" value="Confirm"/>
+        {#<a href="{{ url('nextQuizPage', {'idQuizQuestion': idQuizQuestion, 'quizName': quizName, 'whatQuestion': whatQuestion, 'idUser': idUser, 'idUserAnswer': idUserAnswer, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}" class="next">Next</a>#}
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ include('footer.html.twig') }}
+{% endblock %}
+</body>
+</html>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    function writeUserAnswer(idQuizQuestion, quizName, whatQuestion, idUser, idUserAnswer, question, answer1, answer2, answer3, answer4) {
+    
+    }
+</script>

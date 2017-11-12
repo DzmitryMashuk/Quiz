@@ -22,7 +22,7 @@
         </form>
         <input id="start" onclick="renderUserQuizPage({{ app.user.id }})" type="button" class="button" value="Start">
         <a href="{{ url('adminAddQuiz') }}" id="add" class="button">Add</a>
-        <a id="edit" class="button">Edit</a>
+        <input type="button" class="button" id="edit" value="Edit" onclick="editQuiz()">
         <input type="button" class="button" id="delete" value="Delete" onclick="deleteQuiz()">
     </div>
 {% endblock %}
@@ -39,7 +39,12 @@
     function deleteQuiz() {
         location.href = "adminDeleteQuiz?quizName=" + $("#quizName").val();
     }
+
     function renderUserQuizPage(idUser) {
         location.href = "userQuizPage?quizName=" + $("#quizName").val() + "&idUser=" + idUser;
+    }
+
+    function editQuiz() {
+        location.href = "adminEditQuiz?quizName=" + $("#quizName").val();
     }
 </script>
