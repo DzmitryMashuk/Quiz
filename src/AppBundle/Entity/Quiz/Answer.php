@@ -24,35 +24,35 @@ class Answer
     /**
      * @var string
      *
-     * @ORM\Column(name="$answer1", type="string", length=50)
+     * @ORM\Column(name="answer1", type="string", length=50)
      */
     private $answer1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="$answer2", type="string", length=50)
+     * @ORM\Column(name="answer2", type="string", length=50)
      */
     private $answer2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="$answer3", type="string", length=50)
+     * @ORM\Column(name="answer3", type="string", length=50)
      */
     private $answer3;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="$answer4", type="string", length=50)
+     * @ORM\Column(name="answer4", type="string", length=50)
      */
     private $answer4;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="correct", type="boolean")
+     * @ORM\Column(name="correct", type="integer")
      */
     private $correct;
 

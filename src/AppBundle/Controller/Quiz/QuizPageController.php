@@ -34,6 +34,8 @@ class QuizPageController extends Controller
             'idAnswer' => $answer->getId(),
             'idUserAnswer' => null,
             'whatQuestion' => 0,
+            'countCorrect' => 0,
+            'correctAnswer' => $answer->getCorrect(),
             'question' => $question->getQuestion(),
             'answer1' => $answer->getAnswer1(),
             'answer2' => $answer->getAnswer2(),
@@ -50,14 +52,23 @@ class QuizPageController extends Controller
         $idUser = $request->get('idUser');
         $idQuizQuestion = $request->get('idQuizQuestion');
         $whatQuestion = $request->get('whatQuestion');
-
-        $userAnswer = new UserAnswer();
-        $userAnswer->setIdUser($idUser);
-        $userAnswer->setIdQuizQuestion($idQuizQuestion);
-        $userAnswer->setWhatQuestion($whatQuestion);
-        $userAnswer->setCountCorrect($request->get('currentAnswer'));
+        $countCorrect = $request->get('countCorrect');
+        $idAnswer = $request->get('idAnswer');
 
         $em = $this->getDoctrine()->getManager();
+
+        $answer = $em->getRepository(Answer::class)->find($idAnswer);
+
+        $userAnswer = new UserAnswer();
+        $userAnswer->setIdUser((int)$idUser);
+        $userAnswer->setIdQuizQuestion($idQuizQuestion);
+        $userAnswer->setWhatQuestion((int)$whatQuestion);
+
+        if ($answer->getCorrect() == $request->get('currentAnswer')){
+            $countCorrect = $countCorrect + 1;
+        }
+        $userAnswer->setCountCorrect($countCorrect);
+
         $em->persist($userAnswer);
         $em->flush();
 
@@ -68,7 +79,9 @@ class QuizPageController extends Controller
         'idQuestion' => $request->get('idQuestion'),
         'idAnswer' => $request->get('idAnswer'),
         'idUserAnswer' => $userAnswer->getId(),
-        'whatQuestion' => $whatQuestion,
+        'whatQuestion' => $whatQuestion + 1,
+        'countCorrect' => $countCorrect,
+        'correctAnswer' => $answer->getCorrect(),
         'question' => $request->get('question'),
         'answer1' => $request->get('answer1'),
         'answer2' => $request->get('answer2'),
@@ -82,12 +95,18 @@ class QuizPageController extends Controller
      */
     public function nextQuizPageAction(Request $request)
     {
-        $whatQuestion = $request->get('whatQuestion') + 1;
+        $whatQuestion = $request->get('whatQuestion');
         $quizName = $request->get('quizName');
-        $idUserAnswer = $request->get('idUserAnswer');
+
         $em = $this->getDoctrine()->getManager();
 
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+
+        if ($quiz->getFinishQuestion() == $whatQuestion){
+            return $this->render('quiz/userFinishQuiz.html.twig', array(
+                'quiz' => $quiz
+            ));
+        }
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
         $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());
         $answer = $em->getRepository(Answer::class)->find($quizQuestion[$whatQuestion]->getIdAnswer());
@@ -99,7 +118,9 @@ class QuizPageController extends Controller
             'idQuestion' => $question->getId(),
             'idAnswer' => $answer->getId(),
             'idUserAnswer' => $request->get('idUserAnswer'),
-            'whatQuestion' => $whatQuestion,
+            'whatQuestion' => $whatQuestion ,
+            'countCorrect' => $request->get('countCorrect'),
+            'correctAnswer' => $answer->getCorrect(),
             'question' => $question->getQuestion(),
             'answer1' => $answer->getAnswer1(),
             'answer2' => $answer->getAnswer2(),

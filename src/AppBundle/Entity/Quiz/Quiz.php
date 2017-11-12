@@ -63,10 +63,15 @@ class Quiz
      */
     private $block;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="finishQuestion", type="integer")
+     */
+    private $finishQuestion;
+
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -75,8 +80,6 @@ class Quiz
     }
 
     /**
-     * Set name
-     *
      * @param string $name
      */
     public function setName($name)
@@ -85,8 +88,6 @@ class Quiz
     }
 
     /**
-     * Get name
-     *
      * @return string
      */
     public function getName()
@@ -95,8 +96,6 @@ class Quiz
     }
 
     /**
-     * Set status
-     *
      * @param boolean $status
      */
     public function setStatus($status)
@@ -105,8 +104,6 @@ class Quiz
     }
 
     /**
-     * Get status
-     *
      * @return bool
      */
     public function getStatus()
@@ -115,8 +112,6 @@ class Quiz
     }
 
     /**
-     * Set leaderFirst
-     *
      * @param string $leaderFirst
      */
     public function setLeaderFirst($leaderFirst)
@@ -125,8 +120,6 @@ class Quiz
     }
 
     /**
-     * Get leaderFirst
-     *
      * @return string
      */
     public function getLeaderFirst()
@@ -135,8 +128,6 @@ class Quiz
     }
 
     /**
-     * Set leaderSecond
-     *
      * @param string $leaderSecond
      */
     public function setLeaderSecond($leaderSecond)
@@ -145,8 +136,6 @@ class Quiz
     }
 
     /**
-     * Get leaderSecond
-     *
      * @return string
      */
     public function getLeaderSecond()
@@ -155,8 +144,6 @@ class Quiz
     }
 
     /**
-     * Set leaderThird
-     *
      * @param string $leaderThird
      */
     public function setLeaderThird($leaderThird)
@@ -165,8 +152,6 @@ class Quiz
     }
 
     /**
-     * Get leaderThird
-     *
      * @return string
      */
     public function getLeaderThird()
@@ -175,8 +160,6 @@ class Quiz
     }
 
     /**
-     * Set block
-     *
      * @param boolean $block
      */
     public function setBlock($block)
@@ -186,13 +169,27 @@ class Quiz
     }
 
     /**
-     * Get block
-     *
      * @return bool
      */
     public function getBlock()
     {
         return $this->block;
+    }
+
+    /**
+     * @param integer $finishQuestion
+     */
+    public function setFinishQuestion($finishQuestion)
+    {
+        $this->finishQuestion = $finishQuestion;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getFinishQuestion()
+    {
+        return $this->finishQuestion;
     }
 }
 
