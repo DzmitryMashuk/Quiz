@@ -147,12 +147,10 @@ class QuizController extends Controller
         ));
     }
 
-
-
     /**
-     * @Route("/adminEditQuiz", name="AdminEditQuiz")
+     * @Route("/adminEditQuiz", name="adminEditQuiz")
      */
-    public function userQuizPageAction(Request $request)
+    public function adminEditQuizAction(Request $request)
     {
         $quizName = $request->get('quizName');
         $em = $this->getDoctrine()->getManager();
@@ -177,8 +175,35 @@ class QuizController extends Controller
             'answer4' => $answer->getAnswer4(),
             'correct' => $answer->getCorrect()
         ));
+    }
 
+    /**
+     * @Route("/adminChangeQuiz", name="adminChangeQuiz")
+     */
+    public function adminChangeQuizAction(Request $request)
+    {
+        $quizName = $request->get('quizName');
+        $em = $this->getDoctrine()->getManager();
 
+        $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+        $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
+        $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
+
+        $question->setQuestion($request->get('question'));
+        $answer->setAnswer1($request->get('answer1'));
+        $answer->setAnswer2($request->get('answer2'));
+        $answer->setAnswer3($request->get('answer3'));
+        $answer->setAnswer4($request->get('answer4'));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($answer);
+        $em->flush();
+
+        return $this->render('admin/adminEditQuiz.html.twig',array(
+          //  'quizName' => $quizName,
+            'quiz' => $quiz
+        ));
     }
 
 

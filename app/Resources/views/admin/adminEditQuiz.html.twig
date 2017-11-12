@@ -6,32 +6,32 @@
 </head>
 <body>
 {% block header %}
-    {{ include('header.html.twig') }}
+    {{ include('adminHeader.html.twig') }}
 {% endblock %}
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/EditQuiz.css') }}" />
     <div id="grad">
         <img src="{{ asset('images/science.png') }}" class="image1"/>
         <form class="answers">
-            <input type="text" class="question" value="{{ question }}">
+            <input type="text" class="question" id="quest" name="quest" value="{{ question }}">
             <div class="answers1">
                 <p>
-                    <input type="text" class="answer" value="{{ answer1 }}">
+                    <input type="text" class="answer1" id="a1" name="a1" value="{{ answer1 }}">
 
                 </p>
                 <p>
-                    <input type="text" class="answer" value="{{ answer2 }}">
+                    <input type="text" class="answer2" id="a2" name="a2" value="{{ answer2 }}">
                 </p>
                 <p>
-                    <input type="text" class="answer" value="{{ answer3 }}">
+                    <input type="text" class="answer3" id="a3" name="a3" value="{{ answer3 }}">
                 </p>
                 <p>
-                    <input type="text" class="answer" value="{{ answer4 }}">
+                    <input type="text" class="answer4" id="a4" name="a4" value="{{ answer4 }}">
                 </p>
             </div>
         </form>
         <input type="text" class="correct" value="Correct answer - {{ correct }}" readonly>
-        <input id="confirm" type="button" class="confirm" value="Confirm"/>
+        <input onclick="data('{{ quizName }}')" id="confirm" type="button" class="confirm" value="Confirm"/>
         {#<a href="{{ url('nextQuizPage', {'idQuizQuestion': idQuizQuestion, 'quizName': quizName, 'whatQuestion': whatQuestion, 'idUser': idUser, 'idUserAnswer': idUserAnswer, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}" class="next">Next</a>#}
     </div>
 {% endblock %}
@@ -44,7 +44,13 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    function writeUserAnswer(idQuizQuestion, quizName, whatQuestion, idUser, idUserAnswer, question, answer1, answer2, answer3, answer4) {
-    
+    function data(quizName) {
+
+        var quest = $("#quest").val();
+        var ans1 = $("#a1").val();
+        var ans2 = $("#a2").val();
+        var ans3 = $("#a3").val();
+        var ans4 = $("#a4").val();
+        location.href = "adminChangeQuiz?quizName=" + quizName + "&question=" + quest + "&answer1=" + ans1 + "&answer2=" + ans2 + "&answer3=" + ans3 + "&answer4=" + ans4;
     }
 </script>
