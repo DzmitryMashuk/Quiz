@@ -10,7 +10,6 @@ use AppBundle\Entity\Quiz\UserAnswer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class QuizPageController extends Controller
 {
@@ -108,6 +107,4 @@ class QuizPageController extends Controller
             'answer4' => $answer->getAnswer4()
         ));
     }
-
-
 }
