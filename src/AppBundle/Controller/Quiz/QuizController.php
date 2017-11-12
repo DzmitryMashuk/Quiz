@@ -31,6 +31,7 @@ class QuizController extends Controller
             $quiz->setLeaderThird(0);
             $quiz->setStatus(false);
             $quiz->setBlock(false);
+            $quiz->setFinishQuestion(5);
             $em = $this->getDoctrine()->getManager();
             $em->persist($quiz);
             $em->flush();
@@ -56,7 +57,6 @@ class QuizController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $question->setFinishQuestion(1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();

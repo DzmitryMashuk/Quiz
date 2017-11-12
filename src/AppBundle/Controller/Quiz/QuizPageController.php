@@ -18,16 +18,47 @@ class QuizPageController extends Controller
      */
     public function userQuizPageAction(Request $request)
     {
+        $idUser = $request->get('idUser');
         $quizName = $request->get('quizName');
         $em = $this->getDoctrine()->getManager();
 
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
+
+        for ($i = 0 ; $i < count($quizQuestion) - 1 ; ++$i) {
+
+            if ($quizQuestion[$i] != null){
+            $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i]->getId(), 'idUser' => $idUser));
+            }
+        }
+
+        if ($userAnswer != null){
+            $question = $em->getRepository(Question::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdQuestion());
+            $answer = $em->getRepository(Answer::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdAnswer());
+
+            return $this->render('quiz/userQuizPage.html.twig', array(
+                'idUser' => $idUser,
+                'quizName' => $quizName,
+                'idQuizQuestion' => $quizQuestion[$userAnswer->getWhatQuestion()]->getId(),
+                'idQuestion' => $question->getId(),
+                'idAnswer' => $answer->getId(),
+                'idUserAnswer' => $userAnswer->getId(),
+                'whatQuestion' => $userAnswer->getWhatQuestion(),
+                'countCorrect' => $userAnswer->getCountCorrect(),
+                'correctAnswer' => $answer->getCorrect(),
+                'question' => $question->getQuestion(),
+                'answer1' => $answer->getAnswer1(),
+                'answer2' => $answer->getAnswer2(),
+                'answer3' => $answer->getAnswer3(),
+                'answer4' => $answer->getAnswer4()
+            ));
+        }
+
         $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
         $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
 
         return $this->render('quiz/userQuizPage.html.twig', array(
-            'idUser' => $request->get('idUser'),
+            'idUser' => $idUser,
             'quizName' => $quizName,
             'idQuizQuestion' => $quizQuestion[0]->getId(),
             'idQuestion' => $question->getId(),
