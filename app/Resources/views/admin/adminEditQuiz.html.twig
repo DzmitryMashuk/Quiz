@@ -31,8 +31,8 @@
             </div>
         </form>
         <input type="text" class="correct" value="Correct answer - {{ correct }}" readonly>
-        <input onclick="data('{{ quizName }}')" id="confirm" type="button" class="confirm" value="Confirm"/>
-        <a href="{{ url('nextEditQuiz', { 'quizName': quizName, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}" class="next">Next</a>
+        <input onclick="data('{{ quizName }}', '{{ whatQuestion }}')" id="confirm" type="button" class="confirm" value="Confirm"/>
+        <a href="{{ url('nextEditQuiz', { 'quizName': quizName, 'whatQuestion': whatQuestion, 'question': question, 'answer1': answer1, 'answer2': answer2, 'answer3': answer3, 'answer4': answer4 }) }}" class="next">Next</a>
     </div>
 {% endblock %}
 {% block footer %}
@@ -44,13 +44,13 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <script type="text/javascript">
-    function data(quizName) {
+    function data(quizName, whatQuestion) {
 
         var question = $("#quest").val();
         var answer1 = $("#a1").val();
         var answer2 = $("#a2").val();
         var answer3 = $("#a3").val();
         var answer4 = $("#a4").val();
-        location.href = "adminChangeQuiz?quizName=" + quizName + "&question=" + question + "&answer1=" + answer1 + "&answer2=" + answer2 + "&answer3=" + answer3 + "&answer4=" + answer4;
+        location.href = "adminChangeQuiz?quizName=" + quizName + "&whatQuestion=" + whatQuestion + "&question=" + question + "&answer1=" + answer1 + "&answer2=" + answer2 + "&answer3=" + answer3 + "&answer4=" + answer4;
     }
 </script>

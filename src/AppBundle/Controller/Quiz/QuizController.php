@@ -181,12 +181,13 @@ class QuizController extends Controller
     public function adminChangeQuizAction(Request $request)
     {
         $quizName = $request->get('quizName');
+        $whatQuestion =$request->get('whatQuestion');
         $em = $this->getDoctrine()->getManager();
 
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
-        $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
-        $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
+        $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[$whatQuestion]->getIdAnswer());
 
         $question->setQuestion($request->get('question'));
         $answer->setAnswer1($request->get('answer1'));
@@ -200,6 +201,7 @@ class QuizController extends Controller
 
         return $this->render('admin/adminEditQuiz.html.twig', array(
             'question' => $question->getQuestion(),
+            'whatQuestion' => $whatQuestion + 1,
             'answer1' => $answer->getAnswer1(),
             'answer2' => $answer->getAnswer2(),
             'answer3' => $answer->getAnswer3(),
@@ -215,11 +217,21 @@ class QuizController extends Controller
     public function nextEditQuizAction(Request $request)
     {
 
-        $whatQuestion = $request->get('whatQuestion')+1;
+        $whatQuestion = $request->get('whatQuestion');
         $quizName = $request->get('quizName');
-        $em = $this->getDoctrine()->getManager();
 
+        $em = $this->getDoctrine()->getManager();
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+
+        if ($quiz->getFinishQuestion() == $whatQuestion){
+            $quizAll = $em->getRepository(Quiz::class)->findAll();
+            return $this->render('mainMenu/adminMainMenu.html.twig', array(
+                'quiz' => $quizAll,
+                'quizName'=> $quizName,
+                'countCorrect' => $request->get('countCorrect'),
+            ));
+
+        }
 
 
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
