@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class UserTopRepository extends \Doctrine\ORM\EntityRepository
 {
+//    /**
+//     *
+//     */
+//    public function getMaxPoints()
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//        $query = $em->createQuery(
+//            'SELECT `points` FROM `app_user_top` ORDER BY `points` DESC LIMIT 3'
+//        );
+//        $products = $query->getResult();
+//    }
 }
