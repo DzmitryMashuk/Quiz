@@ -12,6 +12,7 @@ use AppBundle\Entity\Quiz\UserAnswer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuizPageController extends Controller
 {
@@ -86,6 +87,7 @@ class QuizPageController extends Controller
      */
     public function userAnswerWriteAction(Request $request)
     {
+
         $idUser = $request->get('idUser');
         $idQuizQuestion = $request->get('idQuizQuestion');
         $whatQuestion = $request->get('whatQuestion');
@@ -108,6 +110,13 @@ class QuizPageController extends Controller
 
         $em->persist($userAnswer);
         $em->flush();
+
+        if ($request->get('format') == 'json'){
+            $response = new Response(json_encode(array('whatQuestion' => $request->get('whatQuestion') + 1)));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
 
         return $this->render('quiz/userQuizPage.html.twig', array(
         'idUser' => $idUser,
@@ -147,6 +156,13 @@ class QuizPageController extends Controller
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
         $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());
         $answer = $em->getRepository(Answer::class)->find($quizQuestion[$whatQuestion]->getIdAnswer());
+
+        if ($request->get('format') == 'json'){
+            $response = new Response(json_encode(array('whatQuestion' => $request->get('whatQuestion'))));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
 
         return $this->render('quiz/userQuizPage.html.twig', array(
             'idUser' => $request->get('idUser'),
