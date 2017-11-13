@@ -25,14 +25,21 @@ class QuizPageController extends Controller
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
 
-        for ($i = 0 ; $i < count($quizQuestion) - 1 ; ++$i) {
-
-            if ($quizQuestion[$i] != null){
-            $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i]->getId(), 'idUser' => $idUser));
-            }
-        }
+        $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[0]->getId(), 'idUser' => $idUser));
 
         if ($userAnswer != null){
+
+            for ($i = 0; $i < count($quizQuestion); ++$i) {
+
+                if ($quizQuestion[$i] != null) {
+                    $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i]->getId(), 'idUser' => $idUser));
+
+                    if ($userAnswer == null) {
+                        $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i - 1]->getId(), 'idUser' => $idUser));
+                        break;
+                    }
+                }
+            }
             $question = $em->getRepository(Question::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdQuestion());
             $answer = $em->getRepository(Answer::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdAnswer());
 
@@ -92,7 +99,7 @@ class QuizPageController extends Controller
 
         $userAnswer = new UserAnswer();
         $userAnswer->setIdUser((int)$idUser);
-        $userAnswer->setIdQuizQuestion($idQuizQuestion);
+        $userAnswer->setIdQuizQuestion((int)$idQuizQuestion);
         $userAnswer->setWhatQuestion((int)$whatQuestion);
 
         if ($answer->getCorrect() == $request->get('currentAnswer')){
