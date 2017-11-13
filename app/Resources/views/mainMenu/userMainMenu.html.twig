@@ -16,7 +16,9 @@
             <input list="Quizzes" id="quizName" class="quizzes" id="quizName" placeholder=" Please, select a quiz">
             <datalist id="Quizzes">
                 {% for quiz in quiz %}
-                    <option value="{{ quiz.name }}">
+                    {% if quiz.block == 0 %}
+                        <option value="{{ quiz.name }}">
+                    {% endif %}
                 {% endfor %}
             </datalist>
         </form>
