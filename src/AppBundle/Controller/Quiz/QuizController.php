@@ -148,10 +148,11 @@ class QuizController extends Controller
      * @Route("/userFinishQuiz", name="userFinishQuiz")
      * @Method("GET")
      */
-    public function userQuizFinishAction()
+    public function userQuizFinishAction(Request $request)
     {
+        $quizName = $request->get('quizName');
         $em = $this->getDoctrine()->getManager();
-        $quiz = $em->getRepository(Quiz::class)->findOneById(46);
+        $quiz = $em->getRepository(Quiz::class)->findOneById(['name' => $quizName]);
         return $this->render('quiz/userFinishQuiz.html.twig', array(
             'quiz' => $quiz,
         ));
@@ -223,7 +224,7 @@ class QuizController extends Controller
     /**
      * @Route("/nextEditQuiz", name="nextEditQuiz")
      */
-    public function nextQuizPageAction(Request $request)
+    public function nextEditQuizAction(Request $request)
     {
 
         $whatQuestion = $request->get('whatQuestion')+1;
