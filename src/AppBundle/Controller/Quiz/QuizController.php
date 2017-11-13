@@ -31,13 +31,14 @@ class QuizController extends Controller
             $quiz->setLeaderThird(0);
             $quiz->setStatus(false);
             $quiz->setBlock(false);
-            $quiz->setFinishQuestion(5);
+            $quiz->setFinishQuestion(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($quiz);
             $em->flush();
 
             return $this->redirectToRoute("adminAddQuestion", array(
-                'quizId' => $quiz->getId()
+                'quizId' => $quiz->getId(),
+                'countQuestion' => 0
                 ));
         }
 
@@ -63,7 +64,8 @@ class QuizController extends Controller
 
             return $this->redirectToRoute("adminAddAnswers", array(
                 'questionId' => $question->getId(),
-                'quizId' => $request->get('quizId')
+                'quizId' => $request->get('quizId'),
+                'countQuestion' => $request->get('countQuestion') + 1
             ));
         }
 
@@ -92,10 +94,18 @@ class QuizController extends Controller
             $quiz_question->setIdQuestion($request->get('questionId'));
             $quiz_question->setIdAnswer($answer->getId());
             $em->persist($quiz_question);
+
+            $quizId = $request->get('quizId');
+            $countQuestion = $request->get('countQuestion');
+            $quiz = $em->getRepository(Quiz::class)->find($quizId);
+            $quiz->setFinishQuestion($countQuestion);
+            $em->persist($quiz);
+
             $em->flush();
 
             return $this->redirectToRoute("adminAddQuestion", array(
-                'quizId' => $request->get('quizId')
+                'quizId' => $quizId,
+                'countQuestion' => $countQuestion
             ));
         }
 
