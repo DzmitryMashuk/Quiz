@@ -152,7 +152,6 @@ class QuizPageController extends Controller
         $quizName = $request->get('quizName');
 
         $em = $this->getDoctrine()->getManager();
-
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
 
         if ($quiz->getFinishQuestion() == $whatQuestion){
