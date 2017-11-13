@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle\Controller\Registration;
 
 use AppBundle\Form\RegistrationType;
 use AppBundle\Entity\User;
 use AppBundle\Repository\UserRepository;
 use AppBundle\Service\EmailManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
