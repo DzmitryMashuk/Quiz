@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AppBundle\Controller\Quiz;
 
 use AppBundle\Entity\Quiz\QuizQuestion;
+use AppBundle\Entity\UserTop;
 use AppBundle\Form\QuestionType;
 use AppBundle\Form\QuizType;
 use AppBundle\Entity\Quiz\Quiz;
@@ -145,20 +146,20 @@ class QuizController extends Controller
         ]);
     }
 
-    /**
-     *
-     * @Route("/userFinishQuiz", name="userFinishQuiz")
-     * @Method("GET")
-     */
-    public function userQuizFinishAction(Request $request)
-    {
-        $quizName = $request->get('quizName');
-        $em = $this->getDoctrine()->getManager();
-        $quiz = $em->getRepository(Quiz::class)->findOneById(['name' => $quizName]);
-        return $this->render('quiz/userFinishQuiz.html.twig', array(
-            'quiz' => $quiz,
-        ));
-    }
+//    /**
+//     *
+//     * @Route("/userFinishQuiz", name="userFinishQuiz")
+//     * @Method("GET")
+//     */
+//    public function userQuizFinishAction(Request $request)
+//    {
+//        $quizName = $request->get('quizName');
+//        $em = $this->getDoctrine()->getManager();
+//        $quiz = $em->getRepository(Quiz::class)->findOneById(['name' => $quizName]);
+//        return $this->render('quiz/userFinishQuiz.html.twig', array(
+//            'quiz' => $quiz,
+//        ));
+//    }
 
     /**
      * @Route("/adminEditQuiz", name="adminEditQuiz")
@@ -255,4 +256,24 @@ class QuizController extends Controller
             'correct' => $answer->getCorrect(),
         ));
     }
+
+    /**
+     * @Route("/userTop", name="userTop")
+     */
+    public function userTopAction(Request $request)
+    {
+            $userTop = new UserTop();
+            $userTop->setIdQuiz($request->get('quizId'));
+            $userTop->setIdUser($request->get('userId'));
+            $userTop->setCountPoints($request->get('countCorrect'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userTop);
+            $em->flush();
+
+            return $this->redirectToRoute("userFinishQuiz", array(
+                'userTop' => $userTop
+            ));
+    }
+
 }

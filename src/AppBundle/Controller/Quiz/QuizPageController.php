@@ -9,6 +9,7 @@ use AppBundle\Entity\Quiz\Question;
 use AppBundle\Entity\Quiz\Quiz;
 use AppBundle\Entity\Quiz\QuizQuestion;
 use AppBundle\Entity\Quiz\UserAnswer;
+use AppBundle\Entity\UserTop;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -140,9 +141,19 @@ class QuizPageController extends Controller
         $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
 
         if ($quiz->getFinishQuestion() == $whatQuestion){
+            $userTop = new UserTop();
+            $userTop->setQuizName($request->get('quizName'));
+            $userTop->setIdUser($request->get('idUser'));
+            $userTop->setCountPoints($request->get('countCorrect'));
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($userTop);
+            $em->flush();
             return $this->render('quiz/userFinishQuiz.html.twig', array(
-                'quiz' => $quiz
+                'quiz' => $quiz,
+                'countCorrect' => $request->get('countCorrect'),
             ));
+
         }
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
         $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());

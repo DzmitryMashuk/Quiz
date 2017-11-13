@@ -22,11 +22,11 @@ class UserTop
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="idQuiz", type="integer")
+     * @ORM\Column(name="quizName", type="string")
      */
-    private $idQuiz;
+    private $quizName;
 
     /**
      * @var int
@@ -52,19 +52,19 @@ class UserTop
     }
 
     /**
-     * @param integer $idQuiz
+     * @param string $quizName
      */
-    public function setIdQuiz($idQuiz)
+    public function setQuizName($quizName)
     {
-        $this->idQuiz = $idQuiz;
+        $this->quizName = $quizName;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdQuiz()
+    public function getQuizName()
     {
-        return $this->idQuiz;
+        return $this->quizName;
     }
 
     /**
