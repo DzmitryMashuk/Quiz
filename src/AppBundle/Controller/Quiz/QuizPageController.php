@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle\Controller\Quiz;
 
 use AppBundle\Entity\Quiz\Answer;
@@ -26,14 +28,11 @@ class QuizPageController extends Controller
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
 
         $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[0]->getId(), 'idUser' => $idUser));
-
         if ($userAnswer != null){
 
             for ($i = 0; $i < count($quizQuestion); ++$i) {
-
                 if ($quizQuestion[$i] != null) {
                     $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i]->getId(), 'idUser' => $idUser));
-
                     if ($userAnswer == null) {
                         $userAnswer = $em->getRepository(UserAnswer::class)->findOneBy(array('idQuizQuestion' => $quizQuestion[$i - 1]->getId(), 'idUser' => $idUser));
                         break;
@@ -105,7 +104,7 @@ class QuizPageController extends Controller
         if ($answer->getCorrect() == $request->get('currentAnswer')){
             $countCorrect = $countCorrect + 1;
         }
-        $userAnswer->setCountCorrect($countCorrect);
+        $userAnswer->setCountCorrect((int)$countCorrect);
 
         $em->persist($userAnswer);
         $em->flush();

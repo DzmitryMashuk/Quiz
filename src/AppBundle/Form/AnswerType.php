@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Quiz\Answer;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;

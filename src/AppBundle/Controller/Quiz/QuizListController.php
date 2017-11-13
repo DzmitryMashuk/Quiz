@@ -1,13 +1,13 @@
 <?php
 
-namespace AppBundle\Controller\Quiz;
+declare(strict_types=1);
 
+namespace AppBundle\Controller\Quiz;
 
 use AppBundle\Entity\Quiz\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 class QuizListController extends Controller
 {
