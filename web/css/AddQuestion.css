@@ -4,8 +4,9 @@ body {
 }
 
 .image1 {
-    position: absolute;
-    top: 20%;
+    position: relative;
+    display: block;
+    top: 15%;
     left: 7%;
     width: 350px;
 }
@@ -80,6 +81,7 @@ form label {
 }
 
 #grad {
+    min-width: 850px;
     height: 600px;
     background: #00bc08;
     background: -webkit-linear-gradient(#00bc08, #cdf93e);

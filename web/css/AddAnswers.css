@@ -4,14 +4,16 @@ body {
 }
 
 .image1 {
-    position: absolute;
-    top: 20%;
-    left: 7%;
+    display: block;
+    position: relative;
+    top: 15%;
+    left: 8%;
     width: 350px;
 }
 
 button {
-    position: absolute;
+    position: relative;
+    display: block;
     text-decoration:none;
     text-align:center;
     padding:10px 50px;
@@ -85,9 +87,11 @@ form label {
 }
 
 .www {
-    position: absolute;
-    top: 25%;
-    left:31%;
+    display: block;
+    text-align: center;
+    position: relative;
+    top: -45%;
+    margin: 0;
     color: #000000;
     font-family: Mistral, Cursive;
     font-size: 50px;
@@ -104,6 +108,7 @@ form label {
 }
 
 #grad {
+    min-width: 850px;
     height: 600px;
     background: #00bc08;
     background: -webkit-linear-gradient(#00bc08, #cdf93e);

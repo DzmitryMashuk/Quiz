@@ -66,6 +66,7 @@ table td:last-child {
 }
 
 #grad {
+    min-width: 850px;
     height: 1700px;
     background: #00bc08;
     background: -webkit-linear-gradient(#00bc08, #cdf93e);

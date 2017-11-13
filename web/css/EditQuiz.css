@@ -64,11 +64,11 @@ body {
     position: absolute;
     top: 20%;
     left: 30%;
-    width: 550px;
+    width: 650px;
     height: 150px;
     border-radius: 38px;
     text-align: start;
-    font:30px Ubuntu, Lato, sans-serif;
+    font:20px Ubuntu, Lato, sans-serif;
 }
 
 .answers {
@@ -109,6 +109,7 @@ body {
 }
 
 #grad {
+    min-width: 850px;
     height: 600px;
     background: #00bc08;
     background: -webkit-linear-gradient(#00bc08, #cdf93e);
