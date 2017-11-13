@@ -40,6 +40,12 @@ class QuizPageController extends Controller
                     }
                 }
             }
+
+            if ($quiz->getFinishQuestion() == $userAnswer->getWhatQuestion() + 1){
+                return $this->render('quiz/userFinishQuiz.html.twig', array(
+                    'quiz' => $quiz
+                ));
+            }
             $question = $em->getRepository(Question::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdQuestion());
             $answer = $em->getRepository(Answer::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdAnswer());
 
@@ -156,13 +162,6 @@ class QuizPageController extends Controller
         $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
         $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());
         $answer = $em->getRepository(Answer::class)->find($quizQuestion[$whatQuestion]->getIdAnswer());
-
-        if ($request->get('format') == 'json'){
-            $response = new Response(json_encode(array('whatQuestion' => $request->get('whatQuestion'))));
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        }
 
         return $this->render('quiz/userQuizPage.html.twig', array(
             'idUser' => $request->get('idUser'),
