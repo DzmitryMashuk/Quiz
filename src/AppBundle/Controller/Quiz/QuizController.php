@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace AppBundle\Controller\Quiz;
 
 use AppBundle\Entity\Quiz\QuizQuestion;
+use AppBundle\Entity\UserTop;
 use AppBundle\Form\QuestionType;
 use AppBundle\Form\QuizType;
 use AppBundle\Entity\Quiz\Quiz;
@@ -146,16 +147,98 @@ class QuizController extends Controller
     }
 
     /**
-     *
-     * @Route("/userFinishQuiz", name="userFinishQuiz")
-     * @Method("GET")
+     * @Route("/adminEditQuiz", name="adminEditQuiz")
      */
-    public function userQuizFinishAction()
+    public function adminEditQuizAction(Request $request)
     {
+        $quizName = $request->get('quizName');
         $em = $this->getDoctrine()->getManager();
-        $quiz = $em->getRepository(Quiz::class)->findOneById(46);
-        return $this->render('quiz/userFinishQuiz.html.twig', array(
-            'quiz' => $quiz,
+
+        $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+        $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
+        $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
+
+        return $this->render('admin/adminEditQuiz.html.twig', array(
+            'quizName' => $quizName,
+            'idQuizQuestion' => $quizQuestion[0]->getId(),
+            'idQuestion' => $question->getId(),
+            'idAnswer' => $answer->getId(),
+            'idUserAnswer' => null,
+            'whatQuestion' => 0,
+            'question' => $question->getQuestion(),
+            'answer1' => $answer->getAnswer1(),
+            'answer2' => $answer->getAnswer2(),
+            'answer3' => $answer->getAnswer3(),
+            'answer4' => $answer->getAnswer4(),
+            'correct' => $answer->getCorrect()
+        ));
+    }
+
+    /**
+     * @Route("/adminChangeQuiz", name="adminChangeQuiz")
+     */
+    public function adminChangeQuizAction(Request $request)
+    {
+        $quizName = $request->get('quizName');
+        $em = $this->getDoctrine()->getManager();
+
+        $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+        $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
+        $question = $em->getRepository(Question::class)->find($quizQuestion[0]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[0]->getIdAnswer());
+
+        $question->setQuestion($request->get('question'));
+        $answer->setAnswer1($request->get('answer1'));
+        $answer->setAnswer2($request->get('answer2'));
+        $answer->setAnswer3($request->get('answer3'));
+        $answer->setAnswer4($request->get('answer4'));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($answer);
+        $em->flush();
+
+        return $this->render('admin/adminEditQuiz.html.twig', array(
+            'question' => $question->getQuestion(),
+            'answer1' => $answer->getAnswer1(),
+            'answer2' => $answer->getAnswer2(),
+            'answer3' => $answer->getAnswer3(),
+            'answer4' => $answer->getAnswer4(),
+            'correct' => $answer->getCorrect(),
+            'quizName' => $quizName
+        ));
+    }
+
+    /**
+     * @Route("/nextEditQuiz", name="nextEditQuiz")
+     */
+    public function nextEditQuizAction(Request $request)
+    {
+
+        $whatQuestion = $request->get('whatQuestion')+1;
+        $quizName = $request->get('quizName');
+        $em = $this->getDoctrine()->getManager();
+
+        $quiz = $em->getRepository(Quiz::class)->findOneBy(['name' => $quizName]);
+
+
+        $quizQuestion = $em->getRepository(QuizQuestion::class)->findBy(['idQuiz' => $quiz->getId()]);
+        $question = $em->getRepository(Question::class)->find($quizQuestion[$whatQuestion]->getIdQuestion());
+        $answer = $em->getRepository(Answer::class)->find($quizQuestion[$whatQuestion]->getIdAnswer());
+
+        return $this->render('admin/adminEditQuiz.html.twig', array(
+            'quizName' => $quizName,
+            'idQuizQuestion' => $quizQuestion[$whatQuestion]->getId(),
+            'idQuestion' => $question->getId(),
+            'idAnswer' => $answer->getId(),
+            'idUserAnswer' => null,
+            'whatQuestion' => $whatQuestion,
+            'question' => $question->getQuestion(),
+            'answer1' => $answer->getAnswer1(),
+            'answer2' => $answer->getAnswer2(),
+            'answer3' => $answer->getAnswer3(),
+            'answer4' => $answer->getAnswer4(),
+            'correct' => $answer->getCorrect(),
         ));
     }
 }

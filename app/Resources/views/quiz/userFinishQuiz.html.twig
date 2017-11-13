@@ -2,7 +2,7 @@
     {{ include('header.html.twig') }}
 {% endblock %}
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/FinishQuiz.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/finishQuiz.css') }}" />
     <div id="grad">
         <p class="www">Rating</p>
         <table id="grid">
@@ -32,7 +32,7 @@
                 <tr>
                     <td>54</td>
                     <td>{{ app.user.username }}</td>
-                    <td>1</td>
+                    <td>{{ countCorrect }}</td>
                 </tr>
             </tbody>
         </table>
@@ -79,13 +79,3 @@
 {% block footer %}
     {{ include('footer.html.twig') }}
 {% endblock %}
-
-{#
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
-</script>
-<script type="text/javascript">
-    function finishQuiz() {
-        location.href = "userFinishQuiz?quizName=" + $("#quizName").val();
-    }
-</script>
-#}

@@ -20,8 +20,9 @@ body {
 }
 
 .button{
-    position: absolute;
-    top: 65%;
+    position: relative;
+    display: block;
+    top: 50%;
     left: 40%;
     text-decoration:none;
     text-align:center;
@@ -57,6 +58,7 @@ body {
 }
 
 #grad {
+    min-width: 850px;
     height: 600px;
     background: #00bc08;
     background: -webkit-linear-gradient(#00bc08, #cdf93e);
@@ -67,9 +69,11 @@ body {
 
 
 .www {
-    position: absolute;
-    top: 22%;
-    left:30%;
+    display: block;
+    text-align: center;
+    position: relative;
+    top: 20%;
+    margin: 0;
     color: #000000;
     font-family: Mistral, Cursive;
     font-size: 70px;

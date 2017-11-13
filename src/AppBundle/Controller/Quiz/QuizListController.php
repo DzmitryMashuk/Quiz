@@ -8,6 +8,7 @@ use AppBundle\Entity\Quiz\Quiz;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class QuizListController extends Controller
 {
@@ -59,5 +60,4 @@ class QuizListController extends Controller
             'quiz' => $quiz,
         ));
     }
-
 }

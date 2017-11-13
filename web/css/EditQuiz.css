@@ -4,16 +4,15 @@ body {
 }
 
 .image1 {
-    display: block;
-    position: relative;
-    top: 15%;
-    left: 8%;
+    position: absolute;
+    top: 20%;
+    left: 7%;
     width: 350px;
 }
 
-button {
-    position: relative;
-    display: block;
+.confirm,
+.next {
+    position: absolute;
     text-decoration:none;
     text-align:center;
     padding:10px 50px;
@@ -32,79 +31,81 @@ button {
     filter: dropshadow(color=#02170b, offx=4, offy=4);
 }
 
-button {
+.confirm {
     top: 80%;
-    left: 70%;
+    left: 60%;
 }
 
-button:hover {
+.next {
+    top: 80%;
+    left: 80%;
+}
+
+.confirm:hover,
+.next:hover {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-button:active {
+.confirm:active,
+.next:active
+{
     background: #629755;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.6);
     border-color: #000; /* Fallback */
     border-color: rgba(0,0,0,0.9);
 }
 
-.no-boxshadow button:hover {
+.no-boxshadow .confirm:hover,
+.no-boxshadow .next:hover{
     background: #629755;
 }
 
-.answ {
+.question {
     position: absolute;
-    top: 43%;
-    left: 33%;
+    top: 20%;
+    left: 30%;
+    width: 650px;
+    height: 150px;
+    border-radius: 38px;
+    text-align: start;
+    font:20px Ubuntu, Lato, sans-serif;
 }
 
-form input {
-    width: 400px;
-    height: 50px;
+.answers {
+    font:20px Verdana, Geneva, sans-serif;
+}
+
+.answer1,
+.answer2,
+.answer3,
+.answer4 {
+    width: 350px;
+    height: 30px;
     border-radius: 38px;
     text-align: start;
     font:30px Ubuntu, Lato, sans-serif;
 }
 
-form input[type=radio] {
-    width: 45px;
-}
-
-form label {
-    visibility: hidden;
-}
-
-.correct {
-    transform: rotate(90deg);
+.answers1 {
     position: absolute;
-    top: 35%;
-    left: -20%;
+    left: 30%;
+    top: 45%;
 }
 
-.answ :active, :hover, :focus {
+.question:active, :hover, :focus {
     outline: 0;
     outline-offset: 0;
 }
 
-.www {
-    display: block;
-    text-align: center;
-    position: relative;
-    top: -45%;
-    margin: 0;
-    color: #000000;
-    font-family: Mistral, Cursive;
-    font-size: 50px;
-    font-weight: bolder;
-    font-variant: small-caps;
-    text-decoration: none;
-    letter-spacing: 15px;
-    text-transform: none;
-    background-position: top;
-    visibility: visible;
-    border-radius: 4px;
-    text-shadow: 8px 6px 9px #cfe8ad;
-    filter: dropshadow(color=#999494, offx=8, offy=6);
+.correct {
+    position: absolute;
+    top:58%;
+    right: 31%;
+    width: 170px;
+    height: 50px;
+    border-radius: 38px;
+    text-align: start;
+    font:20px Ubuntu, Lato, sans-serif;
 }
 
 #grad {
