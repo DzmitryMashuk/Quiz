@@ -71,17 +71,14 @@
             indexRadioButton = 4;
         }
         window.whatQuestion = whatQuestion;
+        window.countCorrect = countCorrect;
         $.get("userAnswerWrite?currentAnswer=" + indexRadioButton + "&format=json"+"&idAnswer=" + idAnswer + "&idQuestion=" + idQuestion + "&quizName=" + quizName + "&idQuizQuestion=" + idQuizQuestion + "&whatQuestion=" + (whatQuestion) + "&countCorrect=" + countCorrect + "&idUser=" + idUser + "&idUserAnswer=" + idUserAnswer + '&correctAnswer=' + correctAnswer + '&question=' + question + '&answer1=' + answer1 + '&answer2=' + answer2 + '&answer3=' + answer3 + '&answer4=' + answer4)
             .then(function (data) {
                 var link = $("a#next-q").attr("href");
                 var newLink = link.replace(/&whatQuestion=\d+/, "")+"&whatQuestion="+data.whatQuestion;
-                $("a#next-q").attr("href", newLink);
-            }.bind(this));
+                var newLink1 = newLink.replace(/&countCorrect=\d+/, "")+"&countCorrect="+data.countCorrect;
+                $("a#next-q").attr("href", newLink1);
+            });
         alert("You have clicked: " + indexRadioButton + "\n" + "Correct answer: " + correctAnswer);
-    }
-
-    function nextClick() {
-        $("#confirm").css("display", "block");
-        $("#next").css("display", "none");
     }
 </script>

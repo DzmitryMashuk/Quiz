@@ -14,7 +14,7 @@
         <p class="www">Welcome, {{ app.user.username }}!</p>
         <form>
             <input list="Quizzes" class="quizzes" id="quizName" placeholder=" Please, select a quiz">
-            <datalist id="Quizzes">
+            <datalist id="Quizzes" >
                 {% for quiz in quiz %}
                     {% if quiz.block == 0 %}
                          <option value="{{ quiz.name }}">

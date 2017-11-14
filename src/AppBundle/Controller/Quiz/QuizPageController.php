@@ -44,7 +44,8 @@ class QuizPageController extends Controller
 
             if ($quiz->getFinishQuestion() == $userAnswer->getWhatQuestion() + 1){
                 return $this->render('quiz/userFinishQuiz.html.twig', array(
-                    'quiz' => $quiz
+                    'quiz' => $quiz,
+                    'countCorrect' => $request->get('countCorrect')
                 ));
             }
             $question = $em->getRepository(Question::class)->find($quizQuestion[$userAnswer->getWhatQuestion() + 1]->getIdQuestion());
@@ -94,7 +95,6 @@ class QuizPageController extends Controller
      */
     public function userAnswerWriteAction(Request $request)
     {
-
         $idUser = $request->get('idUser');
         $idQuizQuestion = $request->get('idQuizQuestion');
         $whatQuestion = $request->get('whatQuestion');
@@ -119,7 +119,7 @@ class QuizPageController extends Controller
         $em->flush();
 
         if ($request->get('format') == 'json'){
-            $response = new Response(json_encode(array('whatQuestion' => $request->get('whatQuestion') + 1)));
+            $response = new Response(json_encode(array('whatQuestion' => $request->get('whatQuestion') + 1, 'countCorrect' => $countCorrect)));
             $response->headers->set('Content-Type', 'application/json');
 
             return $response;

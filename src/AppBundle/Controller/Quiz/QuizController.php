@@ -141,9 +141,9 @@ class QuizController extends Controller
      */
     public function userFinishQuizAction(Request $request)
     {
-        return $this->render('quiz/userFinishQuiz.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('quiz/userFinishQuiz.html.twig',array(
+            'countCorrect' => 4
+        ));
     }
 
     /**
