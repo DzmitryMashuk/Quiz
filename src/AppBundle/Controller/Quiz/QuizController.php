@@ -142,7 +142,7 @@ class QuizController extends Controller
     public function userFinishQuizAction(Request $request)
     {
         return $this->render('quiz/userFinishQuiz.html.twig',array(
-            'countCorrect' => 4
+            'countCorrect' => $request->get('countCorrect')
         ));
     }
 
